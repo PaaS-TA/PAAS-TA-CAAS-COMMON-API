@@ -3,8 +3,8 @@ spring:
   application:
     name: PortalCommonApi  # Service registers under this name
   security:
-    username: admin
-    password: openpaasta
+    username:
+    password:
 
 # HTTP Server
 server:
@@ -18,20 +18,20 @@ management:
 ---
 spring:
   profiles: local
-#  datasource:
-#    caas:
-#      driver-class-name: com.mysql.jdbc.Driver
-#      url: jdbc:mysql://45.77.19.223:3306/portaldb
-#      username: root
-#      password: 'q'
-  jpa:
-    database: postgresql
-    show-sql: true
-    hibernate:
-      ddl-auto: none
-      naming:
-        strategy: org.hibernate.dialect.MySQL5Dialect
-    generate-ddl: false
+datasource:
+  caas:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://
+    username:
+    password:
+jpa:
+  database: postgresql
+  show-sql: true
+  hibernate:
+    ddl-auto: none
+    naming:
+      strategy: org.hibernate.dialect.MySQL5Dialect
+  generate-ddl: false
 
 ---
 spring:
@@ -40,9 +40,9 @@ spring:
 datasource:
   caas:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://115.68.46.219:3306/portaldb
-    username: root
-    password: '!paas_ta202'
+    url: jdbc:mysql://
+    username:
+    password:
 jpa:
   database: postgresql
   show-sql: true
