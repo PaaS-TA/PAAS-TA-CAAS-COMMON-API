@@ -19,6 +19,10 @@ apply plugin: 'io.spring.dependency-management'
 group = 'org.paasta.caas.common.api'
 sourceCompatibility = 1.8
 
+jar {
+	archivesBaseName = 'paas-ta-caas-common-api'
+}
+
 repositories {
 	mavenCentral()
 	maven { url "https://repo.spring.io/snapshot" }
