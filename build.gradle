@@ -1,37 +1,86 @@
 buildscript {
-	ext {
-		springBootVersion = '2.1.0.BUILD-SNAPSHOT'
-	}
 	repositories {
-		mavenCentral()
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }
+		jcenter()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
 	}
 }
 
 apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
+apply plugin: 'idea'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'org.paasta.caas.common.api'
+repositories {
+	mavenCentral()
+}
+
+ext {
+	appGroup = 'org.paasta.caas.common.api'
+	springIoPlatformVersion = 'Cairo-SR3'
+	lombokVersion = '1.18.2'
+	mysqlConnectorJavaVersion = '8.0.11'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "io.spring.platform:platform-bom:${springIoPlatformVersion}"
+	}
+}
+
 sourceCompatibility = 1.8
+group = "${appGroup}"
 
 jar {
 	archivesBaseName = 'paas-ta-caas-common-api'
 }
 
-repositories {
-	mavenCentral()
-	maven { url "https://repo.spring.io/snapshot" }
-	maven { url "https://repo.spring.io/milestone" }
-}
-
-
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-web-services')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile "org.springframework.boot:spring-boot-starter-web"
+	compile "org.springframework.boot:spring-boot-starter-aop"
+	compile "org.springframework.boot:spring-boot-starter-data-jpa"
+	compile "org.springframework.boot:spring-boot-starter-jdbc"
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	runtime "mysql:mysql-connector-java:${mysqlConnectorJavaVersion}"
+	testCompile "org.springframework.boot:spring-boot-starter-test"
 }
+
+
+// TODO :: REMOVE AFTER CHECK
+// buildscript {
+//	ext {
+//		springBootVersion = '2.1.0.BUILD-SNAPSHOT'
+//	}
+//	repositories {
+//		mavenCentral()
+//		maven { url "https://repo.spring.io/snapshot" }
+//		maven { url "https://repo.spring.io/milestone" }
+//	}
+//	dependencies {
+//		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+//	}
+//}
+//
+//apply plugin: 'java'
+//apply plugin: 'org.springframework.boot'
+//apply plugin: 'io.spring.dependency-management'
+//
+//group = 'org.paasta.caas.common.api'
+//sourceCompatibility = 1.8
+//
+//jar {
+//	archivesBaseName = 'paas-ta-caas-common-api'
+//}
+//
+//repositories {
+//	mavenCentral()
+//	maven { url "https://repo.spring.io/snapshot" }
+//	maven { url "https://repo.spring.io/milestone" }
+//}
+//
+//
+//dependencies {
+//	compile('org.springframework.boot:spring-boot-starter-web')
+//	compile('org.springframework.boot:spring-boot-starter-web-services')
+//	testCompile('org.springframework.boot:spring-boot-starter-test')
+//}
