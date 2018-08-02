@@ -9,6 +9,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'jacoco'
 apply plugin: 'io.spring.dependency-management'
 
 repositories {
@@ -18,8 +19,9 @@ repositories {
 ext {
 	appGroup = 'org.paasta.caas.common.api'
 	springIoPlatformVersion = 'Cairo-SR3'
-	lombokVersion = '1.18.2'
-	mysqlConnectorJavaVersion = '8.0.11'
+    mysqlConnectorJavaVersion = '8.0.11'
+    lombokVersion = '1.18.2'
+    jacocoVersion = '0.8.1'
 }
 
 dependencyManagement {
@@ -43,6 +45,17 @@ dependencies {
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
 	runtime "mysql:mysql-connector-java:${mysqlConnectorJavaVersion}"
 	testCompile "org.springframework.boot:spring-boot-starter-test"
+}
+
+jacoco {
+    toolVersion = "${jacocoVersion}"
+}
+
+test {
+    ignoreFailures=true
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/jacoco-overall.exec")
+    }
 }
 
 
