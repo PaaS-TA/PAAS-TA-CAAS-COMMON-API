@@ -9,9 +9,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.paasta.caas.common.api.common.Constants;
 
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * The type User.
@@ -25,31 +24,35 @@ import java.util.Locale;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "id")
     private long id;
 
     @Column(name = "user_id", nullable = false)
     private String userId;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "user_name", nullable = false)
+    private String userName;
 
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "desc")
-    private String desc;
+    @Column(name = "description")
+    private String description;
 
     @CreationTimestamp
-    @Column(name = "created", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    @Column(name = "created", updatable = false)
+    private LocalDateTime created;
 
     @UpdateTimestamp
-    @Column(name = "last_modified", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModified;
+    @Column(name = "last_modified")
+    private LocalDateTime lastModified;
+
+    @Transient
+    private String createdString;
+
+    @Transient
+    private String lastModifiedString;
 
     /**
      * Gets created string.
@@ -57,7 +60,7 @@ public class User {
      * @return the created string
      */
     public String getCreatedString() {
-        return new SimpleDateFormat(Constants.STRING_DATE_TYPE, Locale.KOREA).format(created);
+        return (created != null) ? created.format(DateTimeFormatter.ofPattern(Constants.STRING_DATE_TYPE)) : "";
     }
 
     /**
@@ -66,6 +69,6 @@ public class User {
      * @return the last modified string
      */
     public String getLastModifiedString() {
-        return new SimpleDateFormat(Constants.STRING_DATE_TYPE, Locale.KOREA).format(lastModified);
+        return (lastModified != null) ? lastModified.format(DateTimeFormatter.ofPattern(Constants.STRING_DATE_TYPE)) : "";
     }
 }
