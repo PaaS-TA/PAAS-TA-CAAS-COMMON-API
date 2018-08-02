@@ -4,15 +4,17 @@
  - frame commit
  - 개발중
 
-## Caas Common API 란?
+## CaaS Common API 란?
   Paasta에서 제공하는 CaaS Dashboard의 API를 제공하는 서비스이다.
 
 
 ## 유의사항
 
 개발 정보
-- java 1.8 버전
-- Gradle 4.4.1
-- Spring-boot 2.0.4
-
-
+- JDK 8
+- Gradle 4
+- Spring Io Platform Cairo-SR3
+- Spring boot 2.0.4
+- Mysql Java Connector 8.0.11
+- Lombok 1.18.2
+- Jacoco 0.8.1
