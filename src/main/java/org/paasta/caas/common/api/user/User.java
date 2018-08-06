@@ -10,7 +10,11 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 /**
- * The type User.
+ * User Model 클래스
+ *
+ * @author REX
+ * @version 1.0
+ * @since 2018.08.02
  */
 @Entity
 @Table(name = "user")

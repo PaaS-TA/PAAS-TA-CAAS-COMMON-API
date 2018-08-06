@@ -5,7 +5,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * The interface User repository.
+ * User Repository 인터페이스
+ *
+ * @author REX
+ * @version 1.0
+ * @since 2018.08.02
  */
 @Repository
 @Transactional

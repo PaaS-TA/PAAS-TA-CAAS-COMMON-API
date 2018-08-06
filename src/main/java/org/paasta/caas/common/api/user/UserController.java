@@ -1,17 +1,19 @@
 package org.paasta.caas.common.api.user;
 
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * The type User controller.
+ * User Controller 클래스
+ *
+ * @author REX
+ * @version 1.0
+ * @since 2018.08.02
  */
 @RestController
 @RequestMapping("/user")
-@Setter
 public class UserController {
 
     private final UserService userService;

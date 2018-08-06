@@ -1,7 +1,11 @@
 package org.paasta.caas.common.api.common;
 
 /**
- * The type Constants.
+ * Constants 클래스
+ *
+ * @author REX
+ * @version 1.0
+ * @since 2018.08.02
  */
 public class Constants {
 
