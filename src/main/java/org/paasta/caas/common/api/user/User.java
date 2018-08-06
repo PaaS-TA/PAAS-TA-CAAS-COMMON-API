@@ -1,15 +1,12 @@
 package org.paasta.caas.common.api.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.Data;
 import org.paasta.caas.common.api.common.Constants;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -17,9 +14,7 @@ import java.time.format.DateTimeFormatter;
  */
 @Entity
 @Table(name = "user")
-@Setter
-@Getter
-@ToString
+@Data
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
@@ -40,35 +35,27 @@ public class User {
     @Column(name = "description")
     private String description;
 
-    @CreationTimestamp
-    @Column(name = "created", updatable = false)
-    private LocalDateTime created;
+    @Column(name = "created", nullable = false, updatable = false)
+    private String created;
 
-    @UpdateTimestamp
-    @Column(name = "last_modified")
-    private LocalDateTime lastModified;
+    @Column(name = "last_modified", nullable = false)
+    private String lastModified;
 
-    @Transient
-    private String createdString;
+    @PrePersist
+    void preInsert() {
+        if (this.created == null) {
+            this.created = LocalDateTime.now(ZoneId.of(Constants.STRING_TIME_ZONE_ID)).format(DateTimeFormatter.ofPattern(Constants.STRING_DATE_TYPE));
+        }
 
-    @Transient
-    private String lastModifiedString;
-
-    /**
-     * Gets created string.
-     *
-     * @return the created string
-     */
-    public String getCreatedString() {
-        return (created != null) ? created.format(DateTimeFormatter.ofPattern(Constants.STRING_DATE_TYPE)) : "";
+        if (this.lastModified == null) {
+            this.lastModified = LocalDateTime.now(ZoneId.of(Constants.STRING_TIME_ZONE_ID)).format(DateTimeFormatter.ofPattern(Constants.STRING_DATE_TYPE));
+        }
     }
 
-    /**
-     * Gets last modified string.
-     *
-     * @return the last modified string
-     */
-    public String getLastModifiedString() {
-        return (lastModified != null) ? lastModified.format(DateTimeFormatter.ofPattern(Constants.STRING_DATE_TYPE)) : "";
+    @PreUpdate
+    void preUpdate() {
+        if (this.lastModified == null) {
+            this.lastModified = LocalDateTime.now(ZoneId.of(Constants.STRING_TIME_ZONE_ID)).format(DateTimeFormatter.ofPattern(Constants.STRING_DATE_TYPE));
+        }
     }
 }
