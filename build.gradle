@@ -59,4 +59,3 @@ test {
         destinationFile = file("$buildDir/jacoco/jacoco-overall.exec")
     }
 }
-

@@ -88,8 +88,8 @@ public class UserService {
      * @param user the user
      * @return the string
      */
-    String deleteUser(User user) {
+    User deleteUser(User user) {
         userRepository.delete(user);
-        return Constants.RESULT_STATUS_SUCCESS;
+        return (User) commonService.setResultModel(User.class, Constants.RESULT_STATUS_SUCCESS, "");
     }
 }

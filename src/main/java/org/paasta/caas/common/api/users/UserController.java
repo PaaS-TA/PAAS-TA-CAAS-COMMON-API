@@ -76,7 +76,7 @@ public class UserController {
      * @return the string
      */
     @DeleteMapping
-    String deleteUser(@RequestBody User user) {
+    User deleteUser(@RequestBody User user) {
         return userService.deleteUser(user);
     }
 }
