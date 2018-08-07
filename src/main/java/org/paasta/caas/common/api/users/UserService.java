@@ -1,4 +1,4 @@
-package org.paasta.caas.common.api.user;
+package org.paasta.caas.common.api.users;
 
 import org.paasta.caas.common.api.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
