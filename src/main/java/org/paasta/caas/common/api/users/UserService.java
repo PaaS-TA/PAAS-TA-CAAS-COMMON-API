@@ -1,5 +1,6 @@
 package org.paasta.caas.common.api.users;
 
+import org.paasta.caas.common.api.common.CommonService;
 import org.paasta.caas.common.api.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,15 +17,19 @@ import java.util.List;
 @Service
 public class UserService {
 
+    private final CommonService commonService;
     private final UserRepository userRepository;
 
     /**
      * Instantiates a new User service.
      *
+     * @param commonService  the common service
      * @param userRepository the user repository
      */
     @Autowired
-    public UserService(UserRepository userRepository) {this.userRepository = userRepository;}
+    public UserService(CommonService commonService, UserRepository userRepository) {
+        this.commonService = commonService;
+        this.userRepository = userRepository;}
 
     /**
      * Gets user list.
@@ -52,7 +57,13 @@ public class UserService {
      * @return the user
      */
     User createUser(User user) {
-        return userRepository.save(user);
+        String result = commonService.procValidator(user);
+
+        if (result.equals(Constants.RESULT_STATUS_SUCCESS)) {
+            return userRepository.save(user);
+        } else {
+            return (User) commonService.setResultModel(User.class, Constants.RESULT_STATUS_FAIL, result);
+        }
     }
 
     /**
@@ -62,7 +73,13 @@ public class UserService {
      * @return the user
      */
     User updateUser(User user) {
-        return userRepository.save(user);
+        String result = commonService.procValidator(user);
+
+        if (result.equals(Constants.RESULT_STATUS_SUCCESS)) {
+            return userRepository.save(user);
+        } else {
+            return (User) commonService.setResultModel(User.class, Constants.RESULT_STATUS_FAIL, result);
+        }
     }
 
     /**

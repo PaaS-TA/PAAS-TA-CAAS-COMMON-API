@@ -5,6 +5,8 @@ import lombok.Data;
 import org.paasta.caas.common.api.common.Constants;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -28,13 +30,17 @@ public class User {
     private long id;
 
     @Column(name = "user_id", nullable = false)
+    @NotNull(message = "USER ID cannot be null")
+    @NotEmpty(message = "USER ID is mandatory")
     private String userId;
 
-    @Column(name = "user_name", nullable = false)
-    private String userName;
+    @Column(name = "role_code", nullable = false)
+    @NotNull(message = "ROLE CODE cannot be null")
+    @NotEmpty(message = "ROLE CODE is mandatory")
+    private String roleCode;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "role_description", nullable = false)
+    private String roleDescription;
 
     @Column(name = "description")
     private String description;
@@ -44,6 +50,12 @@ public class User {
 
     @Column(name = "last_modified", nullable = false)
     private String lastModified;
+
+    @Transient
+    private String resultCode;
+
+    @Transient
+    private String resultMessage;
 
     @PrePersist
     void preInsert() {
