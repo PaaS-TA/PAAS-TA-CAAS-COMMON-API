@@ -1,4 +1,4 @@
-package org.paasta.caas.common.api.users;
+package org.paasta.caas.common.api.user;
 
 import org.paasta.caas.common.api.common.CommonService;
 import org.paasta.caas.common.api.common.Constants;

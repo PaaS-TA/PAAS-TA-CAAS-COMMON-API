@@ -1,4 +1,4 @@
-package org.paasta.caas.common.api.users;
+package org.paasta.caas.common.api.user;
 
 import org.junit.After;
 import org.junit.Before;

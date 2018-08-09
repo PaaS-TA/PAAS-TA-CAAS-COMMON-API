@@ -1,4 +1,4 @@
-package org.paasta.caas.common.api.users;
+package org.paasta.caas.common.api.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

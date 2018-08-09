@@ -1,4 +1,4 @@
-package org.paasta.caas.common.api.users;
+package org.paasta.caas.common.api.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
