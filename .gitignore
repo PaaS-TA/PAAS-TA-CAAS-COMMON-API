@@ -43,3 +43,4 @@ hs_err_pid*
 .spring*
 
 /logs/*
+/src/test/resources/application.yml
