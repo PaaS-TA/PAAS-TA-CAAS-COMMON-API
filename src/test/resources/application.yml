@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: caas-common-api
+
+---
+spring:
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:mysql://DATASOURCE-URL
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    validationQuery: SELECT 1
+    username: DATASOURCE-USER-NAME
+    password: DATASOURCE-PASSWORD
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: none
+      naming:
+        strategy: org.hibernate.cfg.EJB3NamingStrategy
+    generate-ddl: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLInnoDBDialect
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+
+logging:
+  level:
+    ROOT: INFO
+  path: classpath:logback-spring.xml
+  file: logs/application.log
+
+server:
+  port: 3334
+
+caasApi:
+  url: http://localhost:3333
+  authorization:
+    id: AUTHORIZATION-ID
+    password: AUTHORIZATION-PASSWORD
