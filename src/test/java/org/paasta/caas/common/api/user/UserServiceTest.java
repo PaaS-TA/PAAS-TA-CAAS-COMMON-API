@@ -2,16 +2,13 @@ package org.paasta.caas.common.api.user;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.paasta.caas.common.api.common.CommonService;
 import org.paasta.caas.common.api.common.Constants;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +18,11 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+//@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+//@TestPropertySource(properties = {"spring.config.location = D:/WORK_GIT/paastaConfig/caasCommonApi/application.yml"})
 public class UserServiceTest {
 
     private static final int PID = 1;
