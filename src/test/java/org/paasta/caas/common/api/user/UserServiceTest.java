@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.paasta.caas.common.api.common.CommonService;
 import org.paasta.caas.common.api.common.Constants;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@TestPropertySource(properties = {"spring.config.location = D:/WORK_GIT/paastaConfig/caasCommonApi/application.yml"})
 public class UserServiceTest {
 
     private static final int PID = 1;
