@@ -30,8 +30,11 @@ public class UserServiceTest {
 
     private static final int PID = 1;
     private static final String USER_ID = "test-id";
-    private static final String ROLE_CODE = "test-role";
-    private static final String ROLE_DESCRIPTION = "test-role-description";
+    private static final String ROLE_NAME = "Administrator";
+    //private static final String ROLE_CODE = "test-role";
+    private static final String ROLE_SET_CODE = "test-role";
+    //private static final String ROLE_DESCRIPTION = "test-role-description";
+    private static final String NAMESPACE = "kube-namespace";
     private static final String DESCRIPTION = "test-description";
     private static final String CREATED = "test-created";
     private static final String LAST_MODIFIED = "test-last-modified";
@@ -63,16 +66,20 @@ public class UserServiceTest {
         gTestResultErrorModel = new User();
 
         gTestModel.setUserId(USER_ID);
-        gTestModel.setRoleCode(ROLE_CODE);
-        gTestModel.setRoleDescription(ROLE_DESCRIPTION);
+        gTestModel.setRoleName(ROLE_NAME);
+        gTestModel.setRoleSetCode(ROLE_SET_CODE);
+        //gTestModel.setRoleDescription(ROLE_DESCRIPTION);
+        gTestModel.setNamespace(NAMESPACE);
         gTestModel.setDescription(DESCRIPTION);
 
         gTestResultModel.setResultCode(RESULT_CODE_SUCCESS);
         gTestResultModel.setResultMessage(RESULT_MESSAGE);
         gTestResultModel.setId(PID);
         gTestResultModel.setUserId(USER_ID);
-        gTestResultModel.setRoleCode(ROLE_CODE);
-        gTestResultModel.setRoleDescription(ROLE_DESCRIPTION);
+        gTestResultModel.setRoleName(ROLE_NAME);
+        gTestResultModel.setRoleSetCode(ROLE_SET_CODE);
+        //gTestResultModel.setRoleDescription(ROLE_DESCRIPTION);
+        gTestResultModel.setNamespace(NAMESPACE);
         gTestResultModel.setDescription(DESCRIPTION);
         gTestResultModel.setCreated(CREATED);
         gTestResultModel.setLastModified(LAST_MODIFIED);
@@ -105,8 +112,9 @@ public class UserServiceTest {
         assertEquals(gTestResultList, resultList);
         assertEquals(PID, resultList.get(0).getId());
         assertEquals(USER_ID, resultList.get(0).getUserId());
-        assertEquals(ROLE_CODE, resultList.get(0).getRoleCode());
-        assertEquals(ROLE_DESCRIPTION, resultList.get(0).getRoleDescription());
+        assertEquals(ROLE_NAME, resultList.get(0).getRoleName());
+        assertEquals(ROLE_SET_CODE, resultList.get(0).getRoleSetCode());
+        assertEquals(NAMESPACE, resultList.get(0).getNamespace());
         assertEquals(DESCRIPTION, resultList.get(0).getDescription());
         assertEquals(CREATED, resultList.get(0).getCreated());
         assertEquals(LAST_MODIFIED, resultList.get(0).getLastModified());
@@ -127,8 +135,9 @@ public class UserServiceTest {
         assertEquals(gTestResultModel, resultModel);
         assertEquals(PID, resultModel.getId());
         assertEquals(USER_ID, resultModel.getUserId());
-        assertEquals(ROLE_CODE, resultModel.getRoleCode());
-        assertEquals(ROLE_DESCRIPTION, resultModel.getRoleDescription());
+        assertEquals(ROLE_NAME, resultModel.getRoleName());
+        assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
+        assertEquals(NAMESPACE, resultModel.getNamespace());
         assertEquals(DESCRIPTION, resultModel.getDescription());
         assertEquals(CREATED, resultModel.getCreated());
         assertEquals(LAST_MODIFIED, resultModel.getLastModified());
@@ -150,8 +159,9 @@ public class UserServiceTest {
         assertEquals(gTestResultModel, resultModel);
         assertEquals(PID, resultModel.getId());
         assertEquals(USER_ID, resultModel.getUserId());
-        assertEquals(ROLE_CODE, resultModel.getRoleCode());
-        assertEquals(ROLE_DESCRIPTION, resultModel.getRoleDescription());
+        assertEquals(ROLE_NAME, resultModel.getRoleName());
+        assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
+        assertEquals(NAMESPACE, resultModel.getNamespace());
         assertEquals(DESCRIPTION, resultModel.getDescription());
         assertEquals(CREATED, resultModel.getCreated());
         assertEquals(LAST_MODIFIED, resultModel.getLastModified());
@@ -190,8 +200,9 @@ public class UserServiceTest {
         assertEquals(gTestResultModel, resultModel);
         assertEquals(PID, resultModel.getId());
         assertEquals(USER_ID, resultModel.getUserId());
-        assertEquals(ROLE_CODE, resultModel.getRoleCode());
-        assertEquals(ROLE_DESCRIPTION, resultModel.getRoleDescription());
+        assertEquals(ROLE_NAME, resultModel.getRoleName());
+        assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
+        assertEquals(NAMESPACE, resultModel.getNamespace());
         assertEquals(DESCRIPTION, resultModel.getDescription());
         assertEquals(CREATED, resultModel.getCreated());
         assertEquals(LAST_MODIFIED, resultModel.getLastModified());

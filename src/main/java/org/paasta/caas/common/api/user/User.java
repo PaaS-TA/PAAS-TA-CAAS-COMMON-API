@@ -34,13 +34,23 @@ public class User {
     @NotEmpty(message = "USER ID is mandatory")
     private String userId;
 
-    @Column(name = "role_code", nullable = false)
+    @Column(name = "role_name", nullable = false)
+    @NotNull(message = "ROLE NAME cannot be null")
+    @NotEmpty(message = "ROLE NAME is mandatory")
+    private String roleName;
+
+    @Column(name = "role_set_code", nullable = false)
     @NotNull(message = "ROLE CODE cannot be null")
     @NotEmpty(message = "ROLE CODE is mandatory")
-    private String roleCode;
+    private String roleSetCode;
 
-    @Column(name = "role_description", nullable = false)
-    private String roleDescription;
+    /*@Column(name = "role_description", nullable = false)
+    private String roleDescription;*/
+
+    @Column(name = "namespace", nullable = false)
+    @NotNull(message = "NAMESPACE cannot be null")
+    @NotEmpty(message = "NAMESPACE is mandatory")
+    private String namespace;
 
     @Column(name = "description")
     private String description;
