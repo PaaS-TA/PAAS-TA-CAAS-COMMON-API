@@ -30,10 +30,14 @@ public class UserServiceTest {
 
     private static final int PID = 1;
     private static final String USER_ID = "test-id";
+    private static final String SERVICE_INSTANCE_ID = "service-instance-id";
+    private static final String CAAS_ACCOUNT_ACCESS_TOKEN = "account-access-token";
+    private static final String CAAS_ACCOUNT_NAME = "account-name";
+    private static final String ORGANIZATION_GUID = "caas-org";
+    private static final String SPACE_GUID = "caas-space";
+
     private static final String ROLE_NAME = "Administrator";
-    //private static final String ROLE_CODE = "test-role";
     private static final String ROLE_SET_CODE = "test-role";
-    //private static final String ROLE_DESCRIPTION = "test-role-description";
     private static final String NAMESPACE = "kube-namespace";
     private static final String DESCRIPTION = "test-description";
     private static final String CREATED = "test-created";
@@ -66,6 +70,11 @@ public class UserServiceTest {
         gTestResultErrorModel = new User();
 
         gTestModel.setUserId(USER_ID);
+        gTestModel.setServiceInstanceId(SERVICE_INSTANCE_ID);
+        gTestModel.setCaasAccountAccessToken(CAAS_ACCOUNT_ACCESS_TOKEN);
+        gTestModel.setCaasAccountName(CAAS_ACCOUNT_NAME);
+        gTestModel.setOrganizationGuid(ORGANIZATION_GUID);
+        gTestModel.setSpaceGuid(SPACE_GUID);
         gTestModel.setRoleName(ROLE_NAME);
         gTestModel.setRoleSetCode(ROLE_SET_CODE);
         //gTestModel.setRoleDescription(ROLE_DESCRIPTION);
@@ -76,6 +85,11 @@ public class UserServiceTest {
         gTestResultModel.setResultMessage(RESULT_MESSAGE);
         gTestResultModel.setId(PID);
         gTestResultModel.setUserId(USER_ID);
+        gTestResultModel.setServiceInstanceId(SERVICE_INSTANCE_ID);
+        gTestResultModel.setCaasAccountAccessToken(CAAS_ACCOUNT_ACCESS_TOKEN);
+        gTestResultModel.setCaasAccountName(CAAS_ACCOUNT_NAME);
+        gTestResultModel.setOrganizationGuid(ORGANIZATION_GUID);
+        gTestResultModel.setSpaceGuid(SPACE_GUID);
         gTestResultModel.setRoleName(ROLE_NAME);
         gTestResultModel.setRoleSetCode(ROLE_SET_CODE);
         //gTestResultModel.setRoleDescription(ROLE_DESCRIPTION);
@@ -112,6 +126,11 @@ public class UserServiceTest {
         assertEquals(gTestResultList, resultList);
         assertEquals(PID, resultList.get(0).getId());
         assertEquals(USER_ID, resultList.get(0).getUserId());
+        assertEquals(SERVICE_INSTANCE_ID, resultList.get(0).getServiceInstanceId());
+        assertEquals(CAAS_ACCOUNT_ACCESS_TOKEN, resultList.get(0).getCaasAccountAccessToken());
+        assertEquals(CAAS_ACCOUNT_NAME, resultList.get(0).getCaasAccountName());
+        assertEquals(ORGANIZATION_GUID, resultList.get(0).getOrganizationGuid());
+        assertEquals(SPACE_GUID, resultList.get(0).getSpaceGuid());
         assertEquals(ROLE_NAME, resultList.get(0).getRoleName());
         assertEquals(ROLE_SET_CODE, resultList.get(0).getRoleSetCode());
         assertEquals(NAMESPACE, resultList.get(0).getNamespace());
@@ -135,6 +154,11 @@ public class UserServiceTest {
         assertEquals(gTestResultModel, resultModel);
         assertEquals(PID, resultModel.getId());
         assertEquals(USER_ID, resultModel.getUserId());
+        assertEquals(SERVICE_INSTANCE_ID, resultModel.getServiceInstanceId());
+        assertEquals(CAAS_ACCOUNT_ACCESS_TOKEN, resultModel.getCaasAccountAccessToken());
+        assertEquals(CAAS_ACCOUNT_NAME, resultModel.getCaasAccountName());
+        assertEquals(ORGANIZATION_GUID, resultModel.getOrganizationGuid());
+        assertEquals(SPACE_GUID, resultModel.getSpaceGuid());
         assertEquals(ROLE_NAME, resultModel.getRoleName());
         assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
         assertEquals(NAMESPACE, resultModel.getNamespace());
@@ -159,6 +183,11 @@ public class UserServiceTest {
         assertEquals(gTestResultModel, resultModel);
         assertEquals(PID, resultModel.getId());
         assertEquals(USER_ID, resultModel.getUserId());
+        assertEquals(SERVICE_INSTANCE_ID, resultModel.getServiceInstanceId());
+        assertEquals(CAAS_ACCOUNT_ACCESS_TOKEN, resultModel.getCaasAccountAccessToken());
+        assertEquals(CAAS_ACCOUNT_NAME, resultModel.getCaasAccountName());
+        assertEquals(ORGANIZATION_GUID, resultModel.getOrganizationGuid());
+        assertEquals(SPACE_GUID, resultModel.getSpaceGuid());
         assertEquals(ROLE_NAME, resultModel.getRoleName());
         assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
         assertEquals(NAMESPACE, resultModel.getNamespace());
@@ -200,6 +229,11 @@ public class UserServiceTest {
         assertEquals(gTestResultModel, resultModel);
         assertEquals(PID, resultModel.getId());
         assertEquals(USER_ID, resultModel.getUserId());
+        assertEquals(SERVICE_INSTANCE_ID, resultModel.getServiceInstanceId());
+        assertEquals(CAAS_ACCOUNT_ACCESS_TOKEN, resultModel.getCaasAccountAccessToken());
+        assertEquals(CAAS_ACCOUNT_NAME, resultModel.getCaasAccountName());
+        assertEquals(ORGANIZATION_GUID, resultModel.getOrganizationGuid());
+        assertEquals(SPACE_GUID, resultModel.getSpaceGuid());
         assertEquals(ROLE_NAME, resultModel.getRoleName());
         assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
         assertEquals(NAMESPACE, resultModel.getNamespace());
