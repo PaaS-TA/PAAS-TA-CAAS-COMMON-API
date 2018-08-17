@@ -34,6 +34,37 @@ public class User {
     @NotEmpty(message = "USER ID is mandatory")
     private String userId;
 
+    @Column(name = "service_instance_id", nullable = false)
+    @NotNull(message = "SERVICE INSTANCE ID cannot be null")
+    @NotEmpty(message = "SERVICE INSTANCE ID is mandatory")
+    private String serviceInstanceId;
+
+    @Column(name = "namespace", nullable = false)
+    @NotNull(message = "NAMESPACE cannot be null")
+    @NotEmpty(message = "NAMESPACE is mandatory")
+    private String namespace;
+
+    @Column(name = "caas_account_access_token", nullable = false)
+    @NotNull(message = "CAAS ACCOUNT ACCESS TOKEN INSTANCE ID cannot be null")
+    @NotEmpty(message = "CAAS ACCOUNT ACCESS TOKEN is mandatory")
+    private String caasAccountAccessToken;
+
+    // kubernetes 에서 service account 생성 name
+    @Column(name = "caas_account_name", nullable = false)
+    @NotNull(message = "CAAS ACCOUNT NAME cannot be null")
+    @NotEmpty(message = " CAAS ACCOUNT NAME is mandatory")
+    private String caasAccountName;
+
+    @Column(name = "organization_guid", nullable = false)
+    @NotNull(message = "ORGANIZATION GUID cannot be null")
+    @NotEmpty(message = "ORGANIZATION GUID is mandatory")
+    private String organizationGuid;
+
+    @Column(name = "space_guid", nullable = false)
+    @NotNull(message = "SPACE GUID cannot be null")
+    @NotEmpty(message = "SPACE GUID is mandatory")
+    private String spaceGuid;
+
     @Column(name = "role_name", nullable = false)
     @NotNull(message = "ROLE NAME cannot be null")
     @NotEmpty(message = "ROLE NAME is mandatory")
@@ -43,14 +74,6 @@ public class User {
     @NotNull(message = "ROLE CODE cannot be null")
     @NotEmpty(message = "ROLE CODE is mandatory")
     private String roleSetCode;
-
-    /*@Column(name = "role_description", nullable = false)
-    private String roleDescription;*/
-
-    @Column(name = "namespace", nullable = false)
-    @NotNull(message = "NAMESPACE cannot be null")
-    @NotEmpty(message = "NAMESPACE is mandatory")
-    private String namespace;
 
     @Column(name = "description")
     private String description;
