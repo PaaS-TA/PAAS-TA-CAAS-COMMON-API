@@ -1,5 +1,6 @@
 package org.paasta.caas.common.api.user;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.paasta.caas.common.api.common.Constants;
@@ -107,4 +108,10 @@ public class User {
             this.lastModified = LocalDateTime.now(ZoneId.of(Constants.STRING_TIME_ZONE_ID)).format(DateTimeFormatter.ofPattern(Constants.STRING_DATE_TYPE));
         }
     }
+
+    @JsonAlias({"namespace", "cassNamespace"})
+    void setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
+
 }
