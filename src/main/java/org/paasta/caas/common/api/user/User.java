@@ -109,9 +109,14 @@ public class User {
         }
     }
 
-    @JsonAlias({"namespace", "cassNamespace"})
+    @JsonAlias({"namespace", "caasNamespace"})
     void setNamespace(String namespace) {
         this.namespace = namespace;
+    }
+
+    @JsonAlias({"caasAccountAccessToken", "caasAccountTokenName"})
+    void setCaasAccountAccessToken(String caasAccountAccessToken) {
+        this.caasAccountAccessToken = caasAccountAccessToken;
     }
 
 }
