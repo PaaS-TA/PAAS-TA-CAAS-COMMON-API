@@ -40,12 +40,12 @@ public class User {
     @NotEmpty(message = "SERVICE INSTANCE ID is mandatory")
     private String serviceInstanceId;
 
-    @Column(name = "namespace", nullable = false)
+    @Column(name = "caas_namespace", nullable = false)
     @NotNull(message = "NAMESPACE cannot be null")
     @NotEmpty(message = "NAMESPACE is mandatory")
     private String namespace;
 
-    @Column(name = "caas_account_access_token", nullable = false)
+    @Column(name = "caas_account_token_name", nullable = false)
     @NotNull(message = "CAAS ACCOUNT ACCESS TOKEN INSTANCE ID cannot be null")
     @NotEmpty(message = "CAAS ACCOUNT ACCESS TOKEN is mandatory")
     private String caasAccountAccessToken;
