@@ -36,7 +36,6 @@ public class UserServiceTest {
     private static final String ORGANIZATION_GUID = "caas-org";
     private static final String SPACE_GUID = "caas-space";
 
-    private static final String ROLE_NAME = "Administrator";
     private static final String ROLE_SET_CODE = "test-role";
     private static final String NAMESPACE = "kube-namespace";
     private static final String DESCRIPTION = "test-description";
@@ -75,9 +74,7 @@ public class UserServiceTest {
         gTestModel.setCaasAccountName(CAAS_ACCOUNT_NAME);
         gTestModel.setOrganizationGuid(ORGANIZATION_GUID);
         gTestModel.setSpaceGuid(SPACE_GUID);
-        gTestModel.setRoleName(ROLE_NAME);
         gTestModel.setRoleSetCode(ROLE_SET_CODE);
-        //gTestModel.setRoleDescription(ROLE_DESCRIPTION);
         gTestModel.setNamespace(NAMESPACE);
         gTestModel.setDescription(DESCRIPTION);
 
@@ -90,9 +87,7 @@ public class UserServiceTest {
         gTestResultModel.setCaasAccountName(CAAS_ACCOUNT_NAME);
         gTestResultModel.setOrganizationGuid(ORGANIZATION_GUID);
         gTestResultModel.setSpaceGuid(SPACE_GUID);
-        gTestResultModel.setRoleName(ROLE_NAME);
         gTestResultModel.setRoleSetCode(ROLE_SET_CODE);
-        //gTestResultModel.setRoleDescription(ROLE_DESCRIPTION);
         gTestResultModel.setNamespace(NAMESPACE);
         gTestResultModel.setDescription(DESCRIPTION);
         gTestResultModel.setCreated(CREATED);
@@ -131,7 +126,6 @@ public class UserServiceTest {
         assertEquals(CAAS_ACCOUNT_NAME, resultList.get(0).getCaasAccountName());
         assertEquals(ORGANIZATION_GUID, resultList.get(0).getOrganizationGuid());
         assertEquals(SPACE_GUID, resultList.get(0).getSpaceGuid());
-        assertEquals(ROLE_NAME, resultList.get(0).getRoleName());
         assertEquals(ROLE_SET_CODE, resultList.get(0).getRoleSetCode());
         assertEquals(NAMESPACE, resultList.get(0).getNamespace());
         assertEquals(DESCRIPTION, resultList.get(0).getDescription());
@@ -159,7 +153,6 @@ public class UserServiceTest {
         assertEquals(CAAS_ACCOUNT_NAME, resultModel.getCaasAccountName());
         assertEquals(ORGANIZATION_GUID, resultModel.getOrganizationGuid());
         assertEquals(SPACE_GUID, resultModel.getSpaceGuid());
-        assertEquals(ROLE_NAME, resultModel.getRoleName());
         assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
         assertEquals(NAMESPACE, resultModel.getNamespace());
         assertEquals(DESCRIPTION, resultModel.getDescription());
@@ -188,7 +181,6 @@ public class UserServiceTest {
         assertEquals(CAAS_ACCOUNT_NAME, resultModel.getCaasAccountName());
         assertEquals(ORGANIZATION_GUID, resultModel.getOrganizationGuid());
         assertEquals(SPACE_GUID, resultModel.getSpaceGuid());
-        assertEquals(ROLE_NAME, resultModel.getRoleName());
         assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
         assertEquals(NAMESPACE, resultModel.getNamespace());
         assertEquals(DESCRIPTION, resultModel.getDescription());
@@ -234,7 +226,6 @@ public class UserServiceTest {
         assertEquals(CAAS_ACCOUNT_NAME, resultModel.getCaasAccountName());
         assertEquals(ORGANIZATION_GUID, resultModel.getOrganizationGuid());
         assertEquals(SPACE_GUID, resultModel.getSpaceGuid());
-        assertEquals(ROLE_NAME, resultModel.getRoleName());
         assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
         assertEquals(NAMESPACE, resultModel.getNamespace());
         assertEquals(DESCRIPTION, resultModel.getDescription());

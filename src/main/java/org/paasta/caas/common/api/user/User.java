@@ -66,11 +66,6 @@ public class User {
     @NotEmpty(message = "SPACE GUID is mandatory")
     private String spaceGuid;
 
-    @Column(name = "role_name", nullable = false)
-    @NotNull(message = "ROLE NAME cannot be null")
-    @NotEmpty(message = "ROLE NAME is mandatory")
-    private String roleName;
-
     @Column(name = "role_set_code", nullable = false)
     @NotNull(message = "ROLE CODE cannot be null")
     @NotEmpty(message = "ROLE CODE is mandatory")
