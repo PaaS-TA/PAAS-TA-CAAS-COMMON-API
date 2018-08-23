@@ -48,6 +48,18 @@ public class UserController {
     }
 
     /**
+     * Gets user list.
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     * @param organizationGuid the organizationGuid
+     * @return the user
+     */
+    @GetMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}")
+    List<User> getUsersByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId, @PathVariable("organizationGuid") String organizationGuid) {
+        return userService.getUsersByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid);
+    }
+
+    /**
      * Create user user.
      *
      * @param user the user

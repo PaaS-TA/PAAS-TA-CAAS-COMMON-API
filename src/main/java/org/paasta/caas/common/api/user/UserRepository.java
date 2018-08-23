@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * User Repository 인터페이스
  *
@@ -14,5 +16,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface UserRepository extends JpaRepository<User, Long> {
-
+    List<User> findByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid);
 }

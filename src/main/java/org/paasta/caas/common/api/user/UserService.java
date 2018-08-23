@@ -51,6 +51,17 @@ public class UserService {
     }
 
     /**
+     * Gets user.
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     * @param organizationGuid the organizationGuid
+     * @return the user
+     */
+    List<User> getUsersByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid) {
+        return userRepository.findByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid);
+    }
+
+    /**
      * Create user user.
      *
      * @param user the user

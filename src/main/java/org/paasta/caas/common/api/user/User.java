@@ -41,27 +41,27 @@ public class User {
     private String serviceInstanceId;
 
     @Column(name = "caas_namespace", nullable = false)
-    @NotNull(message = "NAMESPACE cannot be null")
-    @NotEmpty(message = "NAMESPACE is mandatory")
-    private String namespace;
-
-    @Column(name = "caas_account_token_name", nullable = false)
-    @NotNull(message = "CAAS ACCOUNT ACCESS TOKEN INSTANCE ID cannot be null")
-    @NotEmpty(message = "CAAS ACCOUNT ACCESS TOKEN is mandatory")
-    private String caasAccountAccessToken;
+    @NotNull(message = "CAAS NAMESPACE cannot be null")
+    @NotEmpty(message = "CAAS NAMESPACE is mandatory")
+    private String caasNamespace;
+//
+    @Column(name = "caas_account_token_name")
+    @NotNull(message = "CAAS ACCOUNT TOKEN NAME cannot be null")
+    @NotEmpty(message = "CAAS ACCOUNT TOKEN NAME is mandatory")
+    private String caasAccountTokenName;
 
     // kubernetes 에서 service account 생성 name
-    @Column(name = "caas_account_name", nullable = false)
+    @Column(name = "caas_account_name")
     @NotNull(message = "CAAS ACCOUNT NAME cannot be null")
     @NotEmpty(message = " CAAS ACCOUNT NAME is mandatory")
     private String caasAccountName;
 
-    @Column(name = "organization_guid", nullable = false)
+    @Column(name = "organization_guid")
     @NotNull(message = "ORGANIZATION GUID cannot be null")
     @NotEmpty(message = "ORGANIZATION GUID is mandatory")
     private String organizationGuid;
 
-    @Column(name = "space_guid", nullable = false)
+    @Column(name = "space_guid")
     @NotNull(message = "SPACE GUID cannot be null")
     @NotEmpty(message = "SPACE GUID is mandatory")
     private String spaceGuid;
@@ -104,14 +104,14 @@ public class User {
         }
     }
 
-    @JsonAlias({"namespace", "caasNamespace"})
-    void setNamespace(String namespace) {
-        this.namespace = namespace;
-    }
-
-    @JsonAlias({"caasAccountAccessToken", "caasAccountTokenName"})
-    void setCaasAccountAccessToken(String caasAccountAccessToken) {
-        this.caasAccountAccessToken = caasAccountAccessToken;
-    }
+//    @JsonAlias({"namespace", "caasNamespace"})
+//    void setNamespace(String namespace) {
+//        this.namespace = namespace;
+//    }
+//
+//    @JsonAlias({"caasAccountAccessToken", "caasAccountTokenName"})
+//    void setCaasAccountAccessToken(String caasAccountAccessToken) {
+//        this.caasAccountAccessToken = caasAccountAccessToken;
+//    }
 
 }
