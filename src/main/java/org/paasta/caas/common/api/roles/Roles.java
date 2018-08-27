@@ -1,4 +1,4 @@
-package org.paasta.caas.common.api.role;
+package org.paasta.caas.common.api.roles;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -14,15 +14,14 @@ import java.time.format.DateTimeFormatter;
 /**
  * @author hrjin
  * @version 1.0
- * @since 2018-08-21
+ * @since 2018-08-27
  */
 @Entity
 @Table(name = "caas_user_role_set")
-@IdClass(RoleSet.class)
+@IdClass(RoleSets.class)
 @Data
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Role {
-
+public class Roles {
     @Id
     @Column(name = "role_set_code", nullable = false)
     @NotNull(message = "role_set_code cannot be null")
@@ -56,5 +55,4 @@ public class Role {
             this.created = LocalDateTime.now(ZoneId.of(Constants.STRING_TIME_ZONE_ID)).format(DateTimeFormatter.ofPattern(Constants.STRING_DATE_TYPE));
         }
     }
-
 }
