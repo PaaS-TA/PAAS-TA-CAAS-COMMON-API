@@ -1,4 +1,4 @@
-package org.paasta.caas.common.api.user;
+package org.paasta.caas.common.api.users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,6 +15,6 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public interface UserRepository extends JpaRepository<User, Long> {
-    List<User> findByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid);
+public interface UsersRepository extends JpaRepository<Users, Long> {
+    List<Users> findByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid);
 }

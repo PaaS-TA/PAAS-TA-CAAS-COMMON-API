@@ -1,4 +1,4 @@
-package org.paasta.caas.common.api.user;
+package org.paasta.caas.common.api.users;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @TestPropertySource("classpath:application.yml")
-public class UserServiceTest {
+public class UsersServiceTest {
 
     private static final int PID = 1;
     private static final String USER_ID = "test-id";
@@ -45,28 +45,28 @@ public class UserServiceTest {
     private static final String RESULT_MESSAGE = "test-result-message";
     private static final String RESULT_ERROR_MESSAGE = "test-result-error-message";
 
-    private static User gTestModel = null;
-    private static User gTestResultModel = null;
-    private static User gTestResultErrorModel = null;
-    private static List<User> gTestResultList = null;
+    private static Users gTestModel = null;
+    private static Users gTestResultModel = null;
+    private static Users gTestResultErrorModel = null;
+    private static List<Users> gTestResultList = null;
 
     @Mock
-    private UserRepository userRepository;
+    private UsersRepository userRepository;
 
     @Mock
     private CommonService commonService;
 
     @InjectMocks
-    private UserService userService;
+    private UsersService userService;
 
 
     @Before
     public void setUp() throws Exception {
 
         gTestResultList = new ArrayList<>();
-        gTestModel = new User();
-        gTestResultModel = new User();
-        gTestResultErrorModel = new User();
+        gTestModel = new Users();
+        gTestResultModel = new Users();
+        gTestResultErrorModel = new Users();
 
         gTestModel.setUserId(USER_ID);
         gTestModel.setServiceInstanceId(SERVICE_INSTANCE_ID);
@@ -114,7 +114,7 @@ public class UserServiceTest {
         when(userRepository.findAll()).thenReturn(gTestResultList);
 
         // TEST
-        List<User> resultList = userService.getUserList();
+        List<Users> resultList = userService.getUserList();
 
         // VERIFY
         assertThat(resultList).isNotNull();
@@ -141,7 +141,7 @@ public class UserServiceTest {
         when(userRepository.getOne((long) PID)).thenReturn(gTestResultModel);
 
         // TEST
-        User resultModel = userService.getUser(PID);
+        Users resultModel = userService.getUser(PID);
 
         // VERIFY
         assertThat(resultModel).isNotNull();
@@ -169,7 +169,7 @@ public class UserServiceTest {
         when(userRepository.save(gTestModel)).thenReturn(gTestResultModel);
 
         // TEST
-        User resultModel = userService.createUser(gTestModel);
+        Users resultModel = userService.createUser(gTestModel);
 
         // VERIFY
         assertThat(resultModel).isNotNull();
@@ -194,10 +194,10 @@ public class UserServiceTest {
     public void createUser_InvalidModel_ReturnErrorModel() {
         // CONDITION
         when(commonService.procValidator(gTestModel)).thenReturn(Constants.RESULT_STATUS_FAIL);
-        when(commonService.setResultModel(User.class, Constants.RESULT_STATUS_FAIL, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
+        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_FAIL, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
 
         // TEST
-        User resultModel = userService.createUser(gTestModel);
+        Users resultModel = userService.createUser(gTestModel);
 
         // VERIFY
         assertThat(resultModel).isNotNull();
@@ -214,7 +214,7 @@ public class UserServiceTest {
         when(userRepository.save(gTestModel)).thenReturn(gTestResultModel);
 
         // TEST
-        User resultModel = userService.updateUser(gTestModel);
+        Users resultModel = userService.updateUser(gTestModel);
 
         // VERIFY
         assertThat(resultModel).isNotNull();
@@ -242,10 +242,10 @@ public class UserServiceTest {
 
         // CONDITION
         when(commonService.procValidator(gTestModel)).thenReturn(Constants.RESULT_STATUS_FAIL);
-        when(commonService.setResultModel(User.class, Constants.RESULT_STATUS_FAIL, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
+        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_FAIL, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
 
         // TEST
-        User resultModel = userService.updateUser(gTestModel);
+        Users resultModel = userService.updateUser(gTestModel);
 
         // VERIFY
         assertThat(resultModel).isNotNull();
@@ -260,10 +260,10 @@ public class UserServiceTest {
 
         // CONDITION
         doNothing().when(userRepository).delete(gTestModel);
-        when(commonService.setResultModel(User.class, Constants.RESULT_STATUS_SUCCESS, "")).thenReturn(gTestResultErrorModel);
+        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS, "")).thenReturn(gTestResultErrorModel);
 
         // TEST
-        User resultModel = userService.deleteUser(gTestModel);
+        Users resultModel = userService.deleteUser(gTestModel);
 
         // VERIFY
         assertThat(resultModel).isNotNull();

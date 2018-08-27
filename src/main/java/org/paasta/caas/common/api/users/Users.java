@@ -1,6 +1,5 @@
-package org.paasta.caas.common.api.user;
+package org.paasta.caas.common.api.users;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.paasta.caas.common.api.common.Constants;
@@ -23,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 @Table(name = "user")
 @Data
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

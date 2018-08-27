@@ -1,4 +1,4 @@
-package org.paasta.caas.common.api.user;
+package org.paasta.caas.common.api.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +14,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class UsersController {
 
-    private final UserService userService;
+    private final UsersService userService;
 
     /**
      * Instantiates a new User controller.
@@ -24,7 +24,7 @@ public class UserController {
      * @param userService the user service
      */
     @Autowired
-    public UserController(UserService userService) {this.userService = userService;}
+    public UsersController(UsersService userService) {this.userService = userService;}
 
     /**
      * Gets user list.
@@ -32,7 +32,7 @@ public class UserController {
      * @return the user list
      */
     @GetMapping
-    List<User> getUserList() {
+    List<Users> getUserList() {
         return userService.getUserList();
     }
 
@@ -43,7 +43,7 @@ public class UserController {
      * @return the user
      */
     @GetMapping(value = "/{id:.+}")
-    User getUser(@PathVariable("id") int id) {
+    Users getUser(@PathVariable("id") int id) {
         return userService.getUser(id);
     }
 
@@ -55,7 +55,7 @@ public class UserController {
      * @return the user
      */
     @GetMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}")
-    List<User> getUsersByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId, @PathVariable("organizationGuid") String organizationGuid) {
+    List<Users> getUsersByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId, @PathVariable("organizationGuid") String organizationGuid) {
         return userService.getUsersByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid);
     }
 
@@ -66,7 +66,7 @@ public class UserController {
      * @return the user
      */
     @PostMapping
-    User createUser(@RequestBody User user) {
+    Users createUser(@RequestBody Users user) {
         return userService.createUser(user);
     }
 
@@ -77,7 +77,7 @@ public class UserController {
      * @return the user
      */
     @PutMapping
-    User updateUser(@RequestBody User user) {
+    Users updateUser(@RequestBody Users user) {
         return userService.updateUser(user);
     }
 
@@ -88,7 +88,7 @@ public class UserController {
      * @return the string
      */
     @DeleteMapping
-    User deleteUser(@RequestBody User user) {
+    Users deleteUser(@RequestBody Users user) {
         return userService.deleteUser(user);
     }
 }
