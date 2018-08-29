@@ -48,7 +48,7 @@ public class UsersController {
     }
 
     /**
-     * Gets user list.
+     * Gets user list By ServiceInstanceId, OrganizationGuid
      *
      * @param serviceInstanceId the serviceInstanceId
      * @param organizationGuid the organizationGuid
@@ -57,6 +57,22 @@ public class UsersController {
     @GetMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}")
     List<Users> getUsersByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId, @PathVariable("organizationGuid") String organizationGuid) {
         return userService.getUsersByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid);
+    }
+
+
+    /**
+     * Gets user By ServiceInstanceId, OrganizationGuid, userId
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     * @param organizationGuid the organizationGuid
+     * @param userId the userId
+     * @return the user
+     */
+    @GetMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}/userId/{userId:.+}")
+    Users getUserByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId,
+                                                        @PathVariable("organizationGuid") String organizationGuid,
+                                                        @PathVariable("userId") String userId){
+        return userService.getUserByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid, userId);
     }
 
     /**

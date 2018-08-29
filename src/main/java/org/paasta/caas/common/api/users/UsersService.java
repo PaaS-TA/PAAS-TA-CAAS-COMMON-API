@@ -51,7 +51,7 @@ public class UsersService {
     }
 
     /**
-     * Gets user.
+     * Gets user list By ServiceInstanceId, OrganizationGuid
      *
      * @param serviceInstanceId the serviceInstanceId
      * @param organizationGuid the organizationGuid
@@ -59,6 +59,19 @@ public class UsersService {
      */
     List<Users> getUsersByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid) {
         return userRepository.findByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid);
+    }
+
+
+    /**
+     * Gets user By ServiceInstanceId, OrganizationGuid, userId
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     * @param organizationGuid the organizationGuid
+     * @param userId the userId
+     * @return the user
+     */
+    Users getUserByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid, String userId) {
+        return userRepository.findByServiceInstanceIdAndOrganizationGuidAndUserId(serviceInstanceId, organizationGuid, userId);
     }
 
     /**

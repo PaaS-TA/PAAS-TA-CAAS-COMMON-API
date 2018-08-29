@@ -17,4 +17,6 @@ import java.util.List;
 @Transactional
 public interface UsersRepository extends JpaRepository<Users, Long> {
     List<Users> findByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid);
+
+    Users findByServiceInstanceIdAndOrganizationGuidAndUserId(String serviceInstanceId, String organizationGuid, String userId);
 }
