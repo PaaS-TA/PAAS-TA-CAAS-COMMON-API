@@ -82,9 +82,6 @@ public class Users {
     @Transient
     private String resultCode;
 
-    @Transient
-    private String resultMessage;
-
     @PrePersist
     void preInsert() {
         if (this.created == null) {
@@ -103,6 +100,7 @@ public class Users {
         }
     }
 
+    // TODO :: REMOVE
 //    @JsonAlias({"namespace", "caasNamespace"})
 //    void setNamespace(String namespace) {
 //        this.namespace = namespace;

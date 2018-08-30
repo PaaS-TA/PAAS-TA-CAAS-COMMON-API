@@ -47,10 +47,9 @@ public class CommonService {
      *
      * @param reqObject           the req object
      * @param resultStatusCode    the result status code
-     * @param resultStatusMessage the result status message
      * @return the result model
      */
-    public Object setResultModel(Object reqObject, String resultStatusCode, String resultStatusMessage) {
+    public Object setResultModel(Object reqObject, String resultStatusCode) {
         Object resultObject = null;
 
         try {
@@ -58,9 +57,7 @@ public class CommonService {
             resultObject = ((Class) reqObject).newInstance();
 
             Method methodSetResultCode = aClass.getMethod("setResultCode", String.class);
-            Method methodSetResultMessage = aClass.getMethod("setResultMessage", String.class);
             methodSetResultCode.invoke(resultObject, resultStatusCode);
-            methodSetResultMessage.invoke(resultObject, resultStatusMessage);
 
         } catch (NoSuchMethodException e) {
             LOGGER.error("NoSuchMethodException :: {}", e);

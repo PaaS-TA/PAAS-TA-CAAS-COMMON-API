@@ -22,6 +22,9 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Users service test.
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -42,8 +45,6 @@ public class UsersServiceTest {
     private static final String CREATED = "test-created";
     private static final String LAST_MODIFIED = "test-last-modified";
     private static final String RESULT_CODE_SUCCESS = Constants.RESULT_STATUS_SUCCESS;
-    private static final String RESULT_MESSAGE = "test-result-message";
-    private static final String RESULT_ERROR_MESSAGE = "test-result-error-message";
 
     private static Users gTestModel = null;
     private static Users gTestResultModel = null;
@@ -60,6 +61,11 @@ public class UsersServiceTest {
     private UsersService userService;
 
 
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
+     */
     @Before
     public void setUp() throws Exception {
 
@@ -79,7 +85,6 @@ public class UsersServiceTest {
         gTestModel.setDescription(DESCRIPTION);
 
         gTestResultModel.setResultCode(RESULT_CODE_SUCCESS);
-        gTestResultModel.setResultMessage(RESULT_MESSAGE);
         gTestResultModel.setId(PID);
         gTestResultModel.setUserId(USER_ID);
         gTestResultModel.setServiceInstanceId(SERVICE_INSTANCE_ID);
@@ -98,6 +103,11 @@ public class UsersServiceTest {
         gTestResultErrorModel.setResultCode(Constants.RESULT_STATUS_FAIL);
     }
 
+    /**
+     * Tear down.
+     *
+     * @throws Exception the exception
+     */
     @After
     public void tearDown() throws Exception {
     }
@@ -108,6 +118,9 @@ public class UsersServiceTest {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+    /**
+     * Gets user list valid return list.
+     */
     @Test
     public void getUserList_Valid_ReturnList() {
         // CONDITION
@@ -132,9 +145,12 @@ public class UsersServiceTest {
         assertEquals(CREATED, resultList.get(0).getCreated());
         assertEquals(LAST_MODIFIED, resultList.get(0).getLastModified());
         assertEquals(RESULT_CODE_SUCCESS, resultList.get(0).getResultCode());
-        assertEquals(RESULT_MESSAGE, resultList.get(0).getResultMessage());
     }
 
+
+    /**
+     * Gets user valid return model.
+     */
     @Test
     public void getUser_Valid_ReturnModel() {
         // CONDITION
@@ -159,9 +175,12 @@ public class UsersServiceTest {
         assertEquals(CREATED, resultModel.getCreated());
         assertEquals(LAST_MODIFIED, resultModel.getLastModified());
         assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
-        assertEquals(RESULT_MESSAGE, resultModel.getResultMessage());
     }
 
+
+    /**
+     * Create user valid return model.
+     */
     @Test
     public void createUser_Valid_ReturnModel() {
         // CONDITION
@@ -187,14 +206,17 @@ public class UsersServiceTest {
         assertEquals(CREATED, resultModel.getCreated());
         assertEquals(LAST_MODIFIED, resultModel.getLastModified());
         assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
-        assertEquals(RESULT_MESSAGE, resultModel.getResultMessage());
     }
 
+
+    /**
+     * Create user invalid model return error model.
+     */
     @Test
     public void createUser_InvalidModel_ReturnErrorModel() {
         // CONDITION
         when(commonService.procValidator(gTestModel)).thenReturn(Constants.RESULT_STATUS_FAIL);
-        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_FAIL, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
+        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
 
         // TEST
         Users resultModel = userService.createUser(gTestModel);
@@ -204,6 +226,10 @@ public class UsersServiceTest {
         assertEquals(Constants.RESULT_STATUS_FAIL, resultModel.getResultCode());
     }
 
+
+    /**
+     * Update user valid return model.
+     */
     @Test
     public void updateUser_Valid_ReturnModel() {
         // SET
@@ -232,9 +258,12 @@ public class UsersServiceTest {
         assertEquals(CREATED, resultModel.getCreated());
         assertEquals(LAST_MODIFIED, resultModel.getLastModified());
         assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
-        assertEquals(RESULT_MESSAGE, resultModel.getResultMessage());
     }
 
+
+    /**
+     * Update user invalid model return error model.
+     */
     @Test
     public void updateUser_InvalidModel_ReturnErrorModel() {
         // SET
@@ -242,7 +271,7 @@ public class UsersServiceTest {
 
         // CONDITION
         when(commonService.procValidator(gTestModel)).thenReturn(Constants.RESULT_STATUS_FAIL);
-        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_FAIL, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
+        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
 
         // TEST
         Users resultModel = userService.updateUser(gTestModel);
@@ -252,6 +281,10 @@ public class UsersServiceTest {
         assertEquals(Constants.RESULT_STATUS_FAIL, resultModel.getResultCode());
     }
 
+
+    /**
+     * Delete user valid return model.
+     */
     @Test
     public void deleteUser_Valid_ReturnModel() {
         // SET
@@ -260,7 +293,7 @@ public class UsersServiceTest {
 
         // CONDITION
         doNothing().when(userRepository).delete(gTestModel);
-        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS, "")).thenReturn(gTestResultErrorModel);
+        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultErrorModel);
 
         // TEST
         Users resultModel = userService.deleteUser(gTestModel);
@@ -269,4 +302,5 @@ public class UsersServiceTest {
         assertThat(resultModel).isNotNull();
         assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
     }
+
 }

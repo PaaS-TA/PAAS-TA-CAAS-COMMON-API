@@ -42,6 +42,6 @@ public class RolesService {
 
     public Roles deleteRole(Roles role) {
         rolesRepository.delete(role);
-        return (Roles) commonService.setResultModel(Roles.class, Constants.RESULT_STATUS_SUCCESS, "");
+        return (Roles) commonService.setResultModel(Roles.class, Constants.RESULT_STATUS_SUCCESS);
     }
 }

@@ -86,7 +86,7 @@ public class UsersService {
         if (result.equals(Constants.RESULT_STATUS_SUCCESS)) {
             return userRepository.save(user);
         } else {
-            return (Users) commonService.setResultModel(Users.class, Constants.RESULT_STATUS_FAIL, result);
+            return (Users) commonService.setResultModel(Users.class, Constants.RESULT_STATUS_FAIL);
         }
     }
 
@@ -102,7 +102,7 @@ public class UsersService {
         if (result.equals(Constants.RESULT_STATUS_SUCCESS)) {
             return userRepository.save(user);
         } else {
-            return (Users) commonService.setResultModel(Users.class, Constants.RESULT_STATUS_FAIL, result);
+            return (Users) commonService.setResultModel(Users.class, Constants.RESULT_STATUS_FAIL);
         }
     }
 
@@ -114,6 +114,6 @@ public class UsersService {
      */
     Users deleteUser(Users user) {
         userRepository.delete(user);
-        return (Users) commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS, "");
+        return (Users) commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS);
     }
 }
