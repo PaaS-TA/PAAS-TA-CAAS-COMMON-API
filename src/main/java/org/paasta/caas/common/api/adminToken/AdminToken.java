@@ -3,10 +3,7 @@ package org.paasta.caas.common.api.adminToken;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -33,19 +30,7 @@ public class AdminToken {
     @NotEmpty(message = "TOKEN VALUE is mandatory")
     private String tokenValue;
 
-    public String getTokenName() {
-        return tokenName;
-    }
+    @Transient
+    private String resultCode;
 
-    public void setTokenName(String tokenName) {
-        this.tokenName = tokenName;
-    }
-
-    public String getTokenValue() {
-        return tokenValue;
-    }
-
-    public void setTokenValue(String tokenValue) {
-        this.tokenValue = tokenValue;
-    }
 }
