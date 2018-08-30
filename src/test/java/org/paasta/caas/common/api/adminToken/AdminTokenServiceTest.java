@@ -1,5 +1,6 @@
 package org.paasta.caas.common.api.adminToken;
 
+import org.assertj.core.api.Assertions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -34,6 +35,7 @@ public class AdminTokenServiceTest {
 
     private static AdminToken gTestModel = null;
     private static AdminToken gTestResultModel = null;
+    private static AdminToken gTestResultErrorModel = null;
 
     @Mock
     private AdminTokenRepository adminTokenRepository;
@@ -55,6 +57,7 @@ public class AdminTokenServiceTest {
 
         gTestModel = new AdminToken();
         gTestResultModel = new AdminToken();
+        gTestResultErrorModel = new AdminToken();
 
         gTestModel.setTokenName(TOKEN_NAME);
         gTestModel.setTokenValue(TOKEN_VALUE);
@@ -63,6 +66,7 @@ public class AdminTokenServiceTest {
         gTestResultModel.setTokenName(TOKEN_NAME);
         gTestResultModel.setTokenValue(TOKEN_VALUE);
 
+        gTestResultErrorModel.setResultCode(Constants.RESULT_STATUS_FAIL);
     }
 
     /**
@@ -120,4 +124,21 @@ public class AdminTokenServiceTest {
         assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
     }
 
+
+    /**
+     * Create admin token invalid model return error model.
+     */
+    @Test
+    public void createAdminToken_InvalidModel_ReturnErrorModel() {
+        // CONDITION
+        when(commonService.procValidator(gTestModel)).thenReturn(Constants.RESULT_STATUS_FAIL);
+        when(commonService.setResultModel(AdminToken.class, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
+
+        // TEST
+        AdminToken resultModel = adminTokenService.createAdminToken(gTestModel);
+
+        // VERIFY
+        Assertions.assertThat(resultModel).isNotNull();
+        assertEquals(Constants.RESULT_STATUS_FAIL, resultModel.getResultCode());
+    }
 }
