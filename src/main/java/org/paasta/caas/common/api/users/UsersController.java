@@ -76,6 +76,21 @@ public class UsersController {
     }
 
     /**
+     * Update User Role By ServiceInstanceId And OrganizationGuid
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     * @param organizationGuid the organizationGuid
+     * @param user the user
+     * @return the user
+     */
+    @PostMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}/userId/{userId:.+}")
+    Users updateUserRoleByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId,
+                                                           @PathVariable("organizationGuid") String organizationGuid,
+                                                           @RequestBody Users user){
+        return userService.updateUserRoleByServiceInstanceIdAndOrganizationGuid(user);
+    }
+
+    /**
      * Create user user.
      *
      * @param user the user

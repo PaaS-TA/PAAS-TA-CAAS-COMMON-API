@@ -74,6 +74,17 @@ public class UsersService {
         return userRepository.findByServiceInstanceIdAndOrganizationGuidAndUserId(serviceInstanceId, organizationGuid, userId);
     }
 
+
+    /**
+     * Update User Role By ServiceInstanceId And OrganizationGuid
+     *
+     * @param user the user
+     * @return the user
+     */
+    Users updateUserRoleByServiceInstanceIdAndOrganizationGuid(Users user) {
+        return userRepository.save(user);
+    }
+
     /**
      * Create user user.
      *
@@ -116,4 +127,5 @@ public class UsersService {
         userRepository.delete(user);
         return (Users) commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS);
     }
+
 }
