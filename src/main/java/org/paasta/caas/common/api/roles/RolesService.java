@@ -26,12 +26,12 @@ public class RolesService {
         this.rolesRepository = rolesRepository;
     }
 
-    public List<Roles> getRoleList() {
-        return rolesRepository.findAll();
+    public List<Roles> getRoleList(String id) {
+        return rolesRepository.findByRoleSetCode(id);
     }
 
-    // Todo 추후 수정 필요.
-    public Roles getRole(String id, @NotNull(message = "resource_code cannot be null") @NotEmpty(message = "resource_code is mandatory") String resourceCode, @NotNull(message = "verb_code cannot be null") @NotEmpty(message = "verb_code is mandatory") String verbCode) {
+
+    public Roles getRole(String id, String resourceCode, String verbCode) {
         return rolesRepository.findByRoleSetCodeAndResourceCodeAndVerbCode(id, resourceCode, verbCode);
     }
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * @author hrjin
@@ -14,4 +15,6 @@ import javax.validation.constraints.NotNull;
 @Repository
 public interface RolesRepository extends JpaRepository<Roles, String> {
     Roles findByRoleSetCodeAndResourceCodeAndVerbCode(String id, @NotNull(message = "resource_code cannot be null") @NotEmpty(message = "resource_code is mandatory") String resourceCode, @NotNull(message = "verb_code cannot be null") @NotEmpty(message = "verb_code is mandatory") String verbCode);
+
+    List<Roles> findByRoleSetCode(String id);
 }

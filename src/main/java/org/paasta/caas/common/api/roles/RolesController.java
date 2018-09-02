@@ -21,15 +21,15 @@ public class RolesController {
         this.rolesService = rolesService;
     }
 
-    @GetMapping
-    public List<Roles> getRoleList(){
-        return rolesService.getRoleList();
+    @GetMapping(value = "/{id:.+}")
+    public List<Roles> getRoleList(@PathVariable("id") String id){
+        return rolesService.getRoleList(id);
     }
 
     // Todo 추후 수정 필요.
-    @PostMapping(value = "/{id:.+}")
-    public Roles getRole(@PathVariable("id") String id, @RequestBody Roles roles){
-        return rolesService.getRole(id, roles.getResourceCode(), roles.getVerbCode());
+    @GetMapping(value = "/{id:.+}/detail")
+    public Roles getRole(@PathVariable("id") String id, @RequestParam("resourceCode") String resourceCode,  @RequestParam("verbCode") String verbCode){
+        return rolesService.getRole(id, resourceCode, verbCode);
     }
 
     @PostMapping
