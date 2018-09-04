@@ -28,14 +28,13 @@ import static org.mockito.Mockito.when;
 @TestPropertySource("classpath:application.yml")
 public class AdminTokenServiceTest {
 
-    private static final int PID = 1;
-    private static final String TOKEN_NAME = "test-token-name";
-    private static final String TOKEN_VALUE = "test-token-value";
-    private static final String RESULT_CODE_SUCCESS = Constants.RESULT_STATUS_SUCCESS;
+    private final String TOKEN_NAME = "test-token-name";
+    private final String TOKEN_VALUE = "test-token-value";
+    private final String RESULT_CODE_SUCCESS = Constants.RESULT_STATUS_SUCCESS;
 
-    private static AdminToken gTestModel = null;
-    private static AdminToken gTestResultModel = null;
-    private static AdminToken gTestResultErrorModel = null;
+    private AdminToken gTestModel = null;
+    private AdminToken gTestResultModel = null;
+    private AdminToken gTestResultErrorModel = null;
 
     @Mock
     private AdminTokenRepository adminTokenRepository;
@@ -49,11 +48,9 @@ public class AdminTokenServiceTest {
 
     /**
      * Sets up.
-     *
-     * @throws Exception the exception
      */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         gTestModel = new AdminToken();
         gTestResultModel = new AdminToken();
@@ -71,11 +68,9 @@ public class AdminTokenServiceTest {
 
     /**
      * Tear down.
-     *
-     * @throws Exception the exception
      */
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
 
@@ -141,4 +136,5 @@ public class AdminTokenServiceTest {
         Assertions.assertThat(resultModel).isNotNull();
         assertEquals(Constants.RESULT_STATUS_FAIL, resultModel.getResultCode());
     }
+
 }

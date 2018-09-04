@@ -31,25 +31,25 @@ import static org.mockito.Mockito.when;
 @TestPropertySource("classpath:application.yml")
 public class UsersServiceTest {
 
-    private static final int PID = 1;
-    private static final String USER_ID = "test-id";
-    private static final String SERVICE_INSTANCE_ID = "service-instance-id";
-    private static final String CAAS_ACCOUNT_ACCESS_TOKEN = "account-access-token";
-    private static final String CAAS_ACCOUNT_NAME = "account-name";
-    private static final String ORGANIZATION_GUID = "caas-org";
-    private static final String SPACE_GUID = "caas-space";
+    private final int PID = 1;
+    private final String USER_ID = "test-id";
+    private final String SERVICE_INSTANCE_ID = "test-service-instance-id";
+    private final String CAAS_ACCOUNT_ACCESS_TOKEN = "test-account-access-token";
+    private final String CAAS_ACCOUNT_NAME = "test-account-name";
+    private final String ORGANIZATION_GUID = "test-caas-org";
+    private final String SPACE_GUID = "test-caas-space";
 
-    private static final String ROLE_SET_CODE = "test-role";
-    private static final String NAMESPACE = "kube-namespace";
-    private static final String DESCRIPTION = "test-description";
-    private static final String CREATED = "test-created";
-    private static final String LAST_MODIFIED = "test-last-modified";
-    private static final String RESULT_CODE_SUCCESS = Constants.RESULT_STATUS_SUCCESS;
+    private final String ROLE_SET_CODE = "test-role";
+    private final String NAMESPACE = "test-kube-namespace";
+    private final String DESCRIPTION = "test-description";
+    private final String CREATED = "test-created";
+    private final String LAST_MODIFIED = "test-last-modified";
+    private final String RESULT_CODE_SUCCESS = Constants.RESULT_STATUS_SUCCESS;
 
-    private static Users gTestModel = null;
-    private static Users gTestResultModel = null;
-    private static Users gTestResultErrorModel = null;
-    private static List<Users> gTestResultList = null;
+    private Users gTestModel = null;
+    private Users gTestResultModel = null;
+    private Users gTestResultErrorModel = null;
+    private List<Users> gTestResultList = null;
 
     @Mock
     private UsersRepository userRepository;
@@ -63,11 +63,9 @@ public class UsersServiceTest {
 
     /**
      * Sets up.
-     *
-     * @throws Exception the exception
      */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         gTestResultList = new ArrayList<>();
         gTestModel = new Users();
@@ -105,11 +103,9 @@ public class UsersServiceTest {
 
     /**
      * Tear down.
-     *
-     * @throws Exception the exception
      */
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
 
@@ -289,11 +285,10 @@ public class UsersServiceTest {
     public void deleteUser_Valid_ReturnModel() {
         // SET
         gTestModel.setId(PID);
-        gTestResultErrorModel.setResultCode(Constants.RESULT_STATUS_SUCCESS);
 
         // CONDITION
         doNothing().when(userRepository).delete(gTestModel);
-        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultErrorModel);
+        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
 
         // TEST
         Users resultModel = userService.deleteUser(gTestModel);
