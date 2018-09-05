@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import java.util.List;
 
 /**
@@ -13,6 +15,10 @@ import java.util.List;
  * @version 1.0
  * @since 2018.08.02
  */
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "user.deleteByServiceInstanceId",
+                query = "DELETE FROM user WHERE service_instance_id = ?1")
+})
 @Repository
 @Transactional
 public interface UsersRepository extends JpaRepository<Users, Long> {
