@@ -1,6 +1,8 @@
 package org.paasta.caas.common.api.users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,10 +17,6 @@ import java.util.List;
  * @version 1.0
  * @since 2018.08.02
  */
-@NamedNativeQueries({
-        @NamedNativeQuery(name = "user.deleteByServiceInstanceId",
-                query = "DELETE FROM user WHERE service_instance_id = ?1")
-})
 @Repository
 @Transactional
 public interface UsersRepository extends JpaRepository<Users, Long> {
@@ -26,5 +24,8 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     Users findByServiceInstanceIdAndOrganizationGuidAndUserId(String serviceInstanceId, String organizationGuid, String userId);
 
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM user WHERE service_instance_id = :serviceInstanceId")
     Users deleteByServiceInstanceId(String serviceInstanceId);
 }
