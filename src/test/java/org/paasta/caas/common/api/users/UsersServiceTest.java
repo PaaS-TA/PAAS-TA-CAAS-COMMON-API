@@ -143,6 +143,31 @@ public class UsersServiceTest {
         assertEquals(RESULT_CODE_SUCCESS, resultList.get(0).getResultCode());
     }
 
+    @Test
+    public void getUsersByServiceInstanceIdAndOrganizationGuid_Valid_ReturnModel(){
+        // CONDITION
+        when(userRepository.findByServiceInstanceIdAndOrganizationGuid(SERVICE_INSTANCE_ID, ORGANIZATION_GUID)).thenReturn(gTestResultList);
+
+        // TEST
+        List<Users> resultList = userService.getUsersByServiceInstanceIdAndOrganizationGuid(SERVICE_INSTANCE_ID, ORGANIZATION_GUID);
+
+        // VERIFY
+        assertThat(resultList).isNotNull();
+        assertEquals(gTestResultList, resultList);
+        assertEquals(PID, resultList.get(0).getId());
+        assertEquals(USER_ID, resultList.get(0).getUserId());
+        assertEquals(SERVICE_INSTANCE_ID, resultList.get(0).getServiceInstanceId());
+        assertEquals(CAAS_ACCOUNT_ACCESS_TOKEN, resultList.get(0).getCaasAccountTokenName());
+        assertEquals(CAAS_ACCOUNT_NAME, resultList.get(0).getCaasAccountName());
+        assertEquals(ORGANIZATION_GUID, resultList.get(0).getOrganizationGuid());
+        assertEquals(SPACE_GUID, resultList.get(0).getSpaceGuid());
+        assertEquals(ROLE_SET_CODE, resultList.get(0).getRoleSetCode());
+        assertEquals(NAMESPACE, resultList.get(0).getCaasNamespace());
+        assertEquals(DESCRIPTION, resultList.get(0).getDescription());
+        assertEquals(CREATED, resultList.get(0).getCreated());
+        assertEquals(LAST_MODIFIED, resultList.get(0).getLastModified());
+        assertEquals(RESULT_CODE_SUCCESS, resultList.get(0).getResultCode());
+    }
 
     /**
      * Gets user valid return model.
@@ -173,6 +198,31 @@ public class UsersServiceTest {
         assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
     }
 
+    @Test
+    public void getUserByServiceInstanceIdAndOrganizationGuid_Valid_ReturnModel(){
+        // CONDITION
+        when(userRepository.findByServiceInstanceIdAndOrganizationGuidAndUserId(SERVICE_INSTANCE_ID, ORGANIZATION_GUID, USER_ID)).thenReturn(gTestResultModel);
+
+        // TEST
+        Users resultModel = userService.getUserByServiceInstanceIdAndOrganizationGuid(SERVICE_INSTANCE_ID, ORGANIZATION_GUID, USER_ID);
+
+        // VERIFY
+        assertThat(resultModel).isNotNull();
+        assertEquals(gTestResultModel, resultModel);
+        assertEquals(PID, resultModel.getId());
+        assertEquals(USER_ID, resultModel.getUserId());
+        assertEquals(SERVICE_INSTANCE_ID, resultModel.getServiceInstanceId());
+        assertEquals(CAAS_ACCOUNT_ACCESS_TOKEN, resultModel.getCaasAccountTokenName());
+        assertEquals(CAAS_ACCOUNT_NAME, resultModel.getCaasAccountName());
+        assertEquals(ORGANIZATION_GUID, resultModel.getOrganizationGuid());
+        assertEquals(SPACE_GUID, resultModel.getSpaceGuid());
+        assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
+        assertEquals(NAMESPACE, resultModel.getCaasNamespace());
+        assertEquals(DESCRIPTION, resultModel.getDescription());
+        assertEquals(CREATED, resultModel.getCreated());
+        assertEquals(LAST_MODIFIED, resultModel.getLastModified());
+        assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
+    }
 
     /**
      * Create user valid return model.
@@ -256,6 +306,35 @@ public class UsersServiceTest {
         assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
     }
 
+    @Test
+    public void updateUserRoleByServiceInstanceIdAndOrganizationGuid_Valid_Return_Model(){
+        // SET
+        gTestModel.setUserId(USER_ID);
+        gTestModel.setRoleSetCode(ROLE_SET_CODE);
+
+        // CONDITION
+        when(userRepository.save(gTestModel)).thenReturn(gTestResultModel);
+
+        // TEST
+        Users resultModel = userService.updateUserRoleByServiceInstanceIdAndOrganizationGuid(gTestModel);
+
+        // VERIFY
+        assertThat(resultModel).isNotNull();
+        assertEquals(gTestResultModel, resultModel);
+        assertEquals(PID, resultModel.getId());
+        assertEquals(USER_ID, resultModel.getUserId());
+        assertEquals(SERVICE_INSTANCE_ID, resultModel.getServiceInstanceId());
+        assertEquals(CAAS_ACCOUNT_ACCESS_TOKEN, resultModel.getCaasAccountTokenName());
+        assertEquals(CAAS_ACCOUNT_NAME, resultModel.getCaasAccountName());
+        assertEquals(ORGANIZATION_GUID, resultModel.getOrganizationGuid());
+        assertEquals(SPACE_GUID, resultModel.getSpaceGuid());
+        assertEquals(ROLE_SET_CODE, resultModel.getRoleSetCode());
+        assertEquals(NAMESPACE, resultModel.getCaasNamespace());
+        assertEquals(DESCRIPTION, resultModel.getDescription());
+        assertEquals(CREATED, resultModel.getCreated());
+        assertEquals(LAST_MODIFIED, resultModel.getLastModified());
+        assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
+    }
 
     /**
      * Update user invalid model return error model.
@@ -292,6 +371,23 @@ public class UsersServiceTest {
 
         // TEST
         Users resultModel = userService.deleteUser(gTestModel);
+
+        // VERIFY
+        assertThat(resultModel).isNotNull();
+        assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
+    }
+
+    @Test
+    public void deleteByServiceInstanceId_Valid_ReturnModel(){
+        // SET
+        gTestModel.setServiceInstanceId(SERVICE_INSTANCE_ID);
+
+        // CONDITION
+        when(userRepository.deleteByServiceInstanceId(gTestModel.getServiceInstanceId())).thenReturn(1);
+        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
+
+        // TEST
+        Users resultModel = userService.deleteByServiceInstanceId(gTestModel.getServiceInstanceId());
 
         // VERIFY
         assertThat(resultModel).isNotNull();
