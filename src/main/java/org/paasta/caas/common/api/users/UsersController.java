@@ -122,6 +122,17 @@ public class UsersController {
     Users deleteUser(@RequestBody Users user) {
         return userService.deleteUser(user);
     }
+
+    /**
+     * Delete user user.
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     * @return the user
+     */
+    @DeleteMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}")
+    Users deleteByServiceInstanceId(@PathVariable("serviceInstanceId") String serviceInstanceId) {
+        return userService.deleteByServiceInstanceId(serviceInstanceId);
+    }
 }
 
 
