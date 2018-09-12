@@ -12,6 +12,8 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 /**
+ * Roles Model 클래스
+ *
  * @author hrjin
  * @version 1.0
  * @since 2018-08-27
