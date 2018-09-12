@@ -27,7 +27,7 @@ public class UsersController {
     public UsersController(UsersService userService) {this.userService = userService;}
 
     /**
-     * Gets user list.
+     * User 목록을 조회한다.
      *
      * @return the user list
      */
@@ -37,7 +37,7 @@ public class UsersController {
     }
 
     /**
-     * Gets user.
+     * User 상세 정보를 조회한다.
      *
      * @param id the id
      * @return the user
@@ -48,7 +48,7 @@ public class UsersController {
     }
 
     /**
-     * Gets user list By ServiceInstanceId, OrganizationGuid
+     * Service Instance Id 와 Organization guid 로 User 목록을 조회한다.
      *
      * @param serviceInstanceId the serviceInstanceId
      * @param organizationGuid the organizationGuid
@@ -61,7 +61,7 @@ public class UsersController {
 
 
     /**
-     * Gets user By ServiceInstanceId, OrganizationGuid, userId
+     * Service Instance Id 와 Organization guid, userId 로 User 상세 정보를 조회한다.
      *
      * @param serviceInstanceId the serviceInstanceId
      * @param organizationGuid the organizationGuid
@@ -76,7 +76,7 @@ public class UsersController {
     }
 
     /**
-     * Update User Role By ServiceInstanceId And OrganizationGuid
+     * Service Instance Id 와 Organization guid, userId 로 User 권한을 업데이트한다.
      *
      * @param serviceInstanceId the serviceInstanceId
      * @param organizationGuid the organizationGuid
@@ -91,7 +91,7 @@ public class UsersController {
     }
 
     /**
-     * Create user user.
+     * User 를 생성한다.
      *
      * @param user the user
      * @return the user
@@ -102,7 +102,7 @@ public class UsersController {
     }
 
     /**
-     * Update user user.
+     * User 를 수정한다.
      *
      * @param user the user
      * @return the user
@@ -113,7 +113,7 @@ public class UsersController {
     }
 
     /**
-     * Delete user string.
+     * User 를 삭제한다.
      *
      * @param user the user
      * @return the string
@@ -124,7 +124,7 @@ public class UsersController {
     }
 
     /**
-     * Delete user user.
+     * service instance id 를 통해 User 를 삭제한다.
      *
      * @param serviceInstanceId the serviceInstanceId
      * @return the user
