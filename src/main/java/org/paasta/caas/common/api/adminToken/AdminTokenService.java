@@ -30,8 +30,9 @@ public class AdminTokenService {
         this.adminTokenRepository = adminTokenRepository;
     }
 
+
     /**
-     * Gets token_value.
+     * Admin token 상세 정보를 조회한다.
      *
      * @param token_name the token_name
      * @return the AdminToken
@@ -42,7 +43,7 @@ public class AdminTokenService {
 
 
     /**
-     * Create admin token admin token.
+     * Admin token 정보를 등록한다.
      *
      * @param adminToken the admin token
      * @return the admin token
@@ -56,4 +57,5 @@ public class AdminTokenService {
             return (AdminToken) commonService.setResultModel(AdminToken.class, Constants.RESULT_STATUS_FAIL);
         }
     }
+
 }

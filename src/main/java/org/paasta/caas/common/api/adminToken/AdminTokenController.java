@@ -1,7 +1,5 @@
 package org.paasta.caas.common.api.adminToken;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/adminToken")
 public class AdminTokenController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AdminTokenController.class);
-
     private final AdminTokenService adminTokenService;
 
     /**
@@ -28,8 +24,9 @@ public class AdminTokenController {
         this.adminTokenService = adminTokenService;
     }
 
+
     /**
-     * Gets token_value.
+     * Admin token 상세 정보를 조회한다.
      *
      * @param token_name the token_name
      * @return the AdminToken
@@ -41,7 +38,7 @@ public class AdminTokenController {
 
 
     /**
-     * Create admin token admin token.
+     * Admin token 정보를 등록한다.
      *
      * @param adminToken the admin token
      * @return the admin token
@@ -50,4 +47,5 @@ public class AdminTokenController {
     AdminToken createAdminToken(@RequestBody AdminToken adminToken) {
         return adminTokenService.createAdminToken(adminToken);
     }
+
 }
