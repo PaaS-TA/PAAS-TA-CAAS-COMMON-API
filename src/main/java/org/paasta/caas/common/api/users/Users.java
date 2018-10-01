@@ -43,7 +43,7 @@ public class Users {
     @NotNull(message = "CAAS NAMESPACE cannot be null")
     @NotEmpty(message = "CAAS NAMESPACE is mandatory")
     private String caasNamespace;
-//
+
     @Column(name = "caas_account_token_name")
     @NotNull(message = "CAAS ACCOUNT TOKEN NAME cannot be null")
     @NotEmpty(message = "CAAS ACCOUNT TOKEN NAME is mandatory")
@@ -100,15 +100,5 @@ public class Users {
         }
     }
 
-    // TODO :: REMOVE
-//    @JsonAlias({"namespace", "caasNamespace"})
-//    void setNamespace(String namespace) {
-//        this.namespace = namespace;
-//    }
-//
-//    @JsonAlias({"caasAccountAccessToken", "caasAccountTokenName"})
-//    void setCaasAccountAccessToken(String caasAccountAccessToken) {
-//        this.caasAccountAccessToken = caasAccountAccessToken;
-//    }
 
 }
