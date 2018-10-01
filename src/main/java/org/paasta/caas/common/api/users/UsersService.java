@@ -132,7 +132,6 @@ public class UsersService {
      * Delete By ServiceInstanceId.
      *
      * @param serviceInstanceId the serviceInstanceId
-     * @return the user
      */
     void deleteByServiceInstanceId(String serviceInstanceId) {
         userRepository.deleteByServiceInstanceId(serviceInstanceId);
