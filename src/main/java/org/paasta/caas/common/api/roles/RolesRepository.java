@@ -16,7 +16,22 @@ import java.util.List;
  */
 @Repository
 public interface RolesRepository extends JpaRepository<Roles, String> {
-    Roles findByRoleSetCodeAndResourceCodeAndVerbCode(String id, @NotNull(message = "resource_code cannot be null") @NotEmpty(message = "resource_code is mandatory") String resourceCode, @NotNull(message = "verb_code cannot be null") @NotEmpty(message = "verb_code is mandatory") String verbCode);
 
+    /**
+     * Role 의 상세 정보를 조회한다.
+     *
+     * @param id the id
+     * @param resourceCode the resource code
+     * @param verbCode the verb code
+     * @return Roles
+     */
+    Roles findByRoleSetCodeAndResourceCodeAndVerbCode(String id, String resourceCode, String verbCode);
+
+    /**
+     * Role 의 목록을 조회한다.
+     *
+     * @param id the id
+     * @return the Roles List
+     */
     List<Roles> findByRoleSetCode(String id);
 }

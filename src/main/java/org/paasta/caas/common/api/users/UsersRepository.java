@@ -18,10 +18,32 @@ import java.util.List;
 @Repository
 @Transactional
 public interface UsersRepository extends JpaRepository<Users, Long> {
+
+    /**
+     * User 의 목록을 조회한다.
+     *
+     * @param serviceInstanceId the service instance id
+     * @param organizationGuid the organization id
+     * @return the User List
+     */
     List<Users> findByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid);
 
+    /**
+     * User 의 상세 정보를 조회한다.
+     *
+     * @param serviceInstanceId the service instance id
+     * @param organizationGuid the organization id
+     * @param userId the user id
+     * @return the user
+     */
     Users findByServiceInstanceIdAndOrganizationGuidAndUserId(String serviceInstanceId, String organizationGuid, String userId);
 
+    /**
+     * User 를 삭제한다.
+     *
+     * @param serviceInstanceId the service instance id
+     * @return Integer
+     */
     @Modifying
     @Query(value = "delete from user where service_instance_id = ?1", nativeQuery = true)
     Integer deleteByServiceInstanceId(String serviceInstanceId);
