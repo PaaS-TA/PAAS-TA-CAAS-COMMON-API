@@ -57,8 +57,14 @@ public class UsersService {
      * @param organizationGuid the organizationGuid
      * @return the user
      */
-    List<Users> getUsersByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid) {
-        return userRepository.findByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid);
+    UsersList getUsersByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid) {
+        List<Users> users = userRepository.findByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid);
+
+        UsersList usersList = new UsersList();
+        usersList.setItems(users);
+        usersList.setResultCode(Constants.RESULT_STATUS_SUCCESS);
+
+        return usersList;
     }
 
 

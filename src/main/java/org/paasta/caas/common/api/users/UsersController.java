@@ -55,7 +55,7 @@ public class UsersController {
      * @return the user
      */
     @GetMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}")
-    List<Users> getUsersByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId, @PathVariable("organizationGuid") String organizationGuid) {
+    UsersList getUsersByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId, @PathVariable("organizationGuid") String organizationGuid) {
         return userService.getUsersByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid);
     }
 
