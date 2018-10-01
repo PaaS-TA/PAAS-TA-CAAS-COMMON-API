@@ -82,7 +82,7 @@ public class UsersService {
      * @return the user
      */
     Users updateUserRoleByServiceInstanceIdAndOrganizationGuid(Users user) {
-        return userRepository.save(user);
+        return (Users) commonService.setResultModel(userRepository.save(user), Constants.RESULT_STATUS_SUCCESS);
     }
 
     /**
