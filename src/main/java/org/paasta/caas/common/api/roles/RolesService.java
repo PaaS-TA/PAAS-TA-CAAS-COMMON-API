@@ -5,8 +5,6 @@ import org.paasta.caas.common.api.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -40,8 +38,14 @@ public class RolesService {
      * @param id the id
      * @return the Roles List
      */
-    public List<Roles> getRoleList(String id) {
-        return rolesRepository.findByRoleSetCode(id);
+    public RolesList getRoleList(String id) {
+        List<Roles> roles = rolesRepository.findByRoleSetCode(id);
+
+        RolesList rolesList = new RolesList();
+        rolesList.setItems(roles);
+        rolesList.setResultCode(Constants.RESULT_STATUS_SUCCESS);
+
+        return rolesList;
     }
 
 

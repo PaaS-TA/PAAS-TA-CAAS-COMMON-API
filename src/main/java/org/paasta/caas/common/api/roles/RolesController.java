@@ -35,7 +35,7 @@ public class RolesController {
      * @return the Roles List
      */
     @GetMapping(value = "/{id:.+}")
-    public List<Roles> getRoleList(@PathVariable("id") String id){
+    public RolesList getRoleList(@PathVariable("id") String id){
         return rolesService.getRoleList(id);
     }
 
