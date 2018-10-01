@@ -153,7 +153,7 @@ public class UsersServiceTest {
 
         // VERIFY
         assertThat(resultList.getItems()).isNotNull();
-        assertEquals(gTestResultList, resultList);
+        assertEquals(gTestResultList, resultList.getItems());
         assertEquals(PID, resultList.getItems().get(0).getId());
         assertEquals(USER_ID, resultList.getItems().get(0).getUserId());
         assertEquals(SERVICE_INSTANCE_ID, resultList.getItems().get(0).getServiceInstanceId());
