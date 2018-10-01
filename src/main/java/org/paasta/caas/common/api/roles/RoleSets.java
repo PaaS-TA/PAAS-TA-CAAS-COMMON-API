@@ -1,5 +1,7 @@
 package org.paasta.caas.common.api.roles;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @version 1.0
  * @since 2018-08-27
  */
+@Data
 public class RoleSets implements Serializable{
     private String roleSetCode;
     private String resourceCode;
