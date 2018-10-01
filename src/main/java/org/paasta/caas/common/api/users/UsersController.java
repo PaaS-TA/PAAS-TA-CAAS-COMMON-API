@@ -130,8 +130,9 @@ public class UsersController {
      * @return the user
      */
     @DeleteMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}")
-    Users deleteByServiceInstanceId(@PathVariable("serviceInstanceId") String serviceInstanceId) {
-        return userService.deleteByServiceInstanceId(serviceInstanceId);
+    void deleteByServiceInstanceId(@PathVariable("serviceInstanceId") String serviceInstanceId) {
+        userService.deleteByServiceInstanceId(serviceInstanceId);
+//        return userService.deleteByServiceInstanceId(serviceInstanceId);
     }
 }
 
