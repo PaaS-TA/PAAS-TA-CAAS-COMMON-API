@@ -71,7 +71,7 @@ public class UsersService {
      * @return the user
      */
     Users getUserByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid, String userId) {
-        return userRepository.findByServiceInstanceIdAndOrganizationGuidAndUserId(serviceInstanceId, organizationGuid, userId);
+        return (Users) commonService.setResultModel(userRepository.findByServiceInstanceIdAndOrganizationGuidAndUserId(serviceInstanceId, organizationGuid, userId), Constants.RESULT_STATUS_SUCCESS);
     }
 
 

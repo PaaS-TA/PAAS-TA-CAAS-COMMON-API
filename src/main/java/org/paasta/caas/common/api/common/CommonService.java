@@ -46,18 +46,15 @@ public class CommonService {
      * Sets result model.
      *
      * @param reqObject           the req object
-     * @param resultStatusCode    the result status code
+     * @param resultCode    the result status code
      * @return the result model
      */
-    public Object setResultModel(Object reqObject, String resultStatusCode) {
-        Object resultObject = null;
-
+    public Object setResultModel(Object reqObject, String resultCode) {
         try {
-            Class<?> aClass = (Class<?>) reqObject;
-            resultObject = ((Class) reqObject).newInstance();
+            Class<?> aClass = reqObject.getClass();
 
             Method methodSetResultCode = aClass.getMethod("setResultCode", String.class);
-            methodSetResultCode.invoke(resultObject, resultStatusCode);
+            methodSetResultCode.invoke(reqObject, resultCode);
 
         } catch (NoSuchMethodException e) {
             LOGGER.error("NoSuchMethodException :: {}", e);
@@ -65,10 +62,8 @@ public class CommonService {
             LOGGER.error("IllegalAccessException :: {}", e1);
         } catch (InvocationTargetException e2) {
             LOGGER.error("InvocationTargetException :: {}", e2);
-        } catch (InstantiationException e3) {
-            LOGGER.error("InstantiationException :: {}", e3);
         }
 
-        return resultObject;
+        return reqObject;
     }
 }
