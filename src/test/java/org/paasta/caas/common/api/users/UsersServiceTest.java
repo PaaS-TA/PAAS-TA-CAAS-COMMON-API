@@ -48,6 +48,7 @@ public class UsersServiceTest {
 
     private Users gTestModel = null;
     private Users gTestResultModel = null;
+    private Users gTestFinalModel = null;
     private Users gTestResultErrorModel = null;
     private List<Users> gTestResultList = null;
 
@@ -70,6 +71,7 @@ public class UsersServiceTest {
         gTestResultList = new ArrayList<>();
         gTestModel = new Users();
         gTestResultModel = new Users();
+        gTestFinalModel = new Users();
         gTestResultErrorModel = new Users();
 
         gTestModel.setUserId(USER_ID);
@@ -97,6 +99,21 @@ public class UsersServiceTest {
         gTestResultModel.setLastModified(LAST_MODIFIED);
 
         gTestResultList.add(gTestResultModel);
+
+        gTestFinalModel.setRoleSetCode(RESULT_CODE_SUCCESS);
+        gTestFinalModel.setId(PID);
+        gTestFinalModel.setUserId(USER_ID);
+        gTestFinalModel.setServiceInstanceId(SERVICE_INSTANCE_ID);
+        gTestFinalModel.setCaasAccountTokenName(CAAS_ACCOUNT_ACCESS_TOKEN);
+        gTestFinalModel.setCaasAccountName(CAAS_ACCOUNT_NAME);
+        gTestFinalModel.setOrganizationGuid(ORGANIZATION_GUID);
+        gTestFinalModel.setSpaceGuid(SPACE_GUID);
+        gTestFinalModel.setRoleSetCode(ROLE_SET_CODE);
+        gTestFinalModel.setCaasNamespace(NAMESPACE);
+        gTestFinalModel.setDescription(DESCRIPTION);
+        gTestFinalModel.setCreated(CREATED);
+        gTestFinalModel.setLastModified(LAST_MODIFIED);
+        gTestFinalModel.setResultCode(RESULT_CODE_SUCCESS);
 
         gTestResultErrorModel.setResultCode(Constants.RESULT_STATUS_FAIL);
     }
@@ -202,6 +219,7 @@ public class UsersServiceTest {
     public void getUserByServiceInstanceIdAndOrganizationGuid_Valid_ReturnModel(){
         // CONDITION
         when(userRepository.findByServiceInstanceIdAndOrganizationGuidAndUserId(SERVICE_INSTANCE_ID, ORGANIZATION_GUID, USER_ID)).thenReturn(gTestResultModel);
+        when(commonService.setResultModel(gTestResultModel, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestFinalModel);
 
         // TEST
         Users resultModel = userService.getUserByServiceInstanceIdAndOrganizationGuid(SERVICE_INSTANCE_ID, ORGANIZATION_GUID, USER_ID);
@@ -314,6 +332,7 @@ public class UsersServiceTest {
 
         // CONDITION
         when(userRepository.save(gTestModel)).thenReturn(gTestResultModel);
+        when(commonService.setResultModel(gTestResultModel, RESULT_CODE_SUCCESS)).thenReturn(gTestFinalModel);
 
         // TEST
         Users resultModel = userService.updateUserRoleByServiceInstanceIdAndOrganizationGuid(gTestModel);
@@ -367,7 +386,7 @@ public class UsersServiceTest {
 
         // CONDITION
         doNothing().when(userRepository).delete(gTestModel);
-        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
+        when(commonService.setResultModel(gTestModel, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
 
         // TEST
         Users resultModel = userService.deleteUser(gTestModel);
@@ -388,11 +407,6 @@ public class UsersServiceTest {
 
         // TEST
         userService.deleteByServiceInstanceId(gTestModel.getServiceInstanceId());
-//        Users resultModel = userService.deleteByServiceInstanceId(gTestModel.getServiceInstanceId());
-//
-//        // VERIFY
-//        assertThat(resultModel).isNotNull();
-//        assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
     }
 
 }
