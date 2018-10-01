@@ -136,7 +136,6 @@ public class UsersService {
      */
     void deleteByServiceInstanceId(String serviceInstanceId) {
         userRepository.deleteByServiceInstanceId(serviceInstanceId);
-//        return (Users) commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS);
     }
 
 }
