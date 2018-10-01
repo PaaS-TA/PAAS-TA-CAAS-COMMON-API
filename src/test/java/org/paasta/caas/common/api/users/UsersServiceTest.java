@@ -149,24 +149,24 @@ public class UsersServiceTest {
         when(userRepository.findByServiceInstanceIdAndOrganizationGuid(SERVICE_INSTANCE_ID, ORGANIZATION_GUID)).thenReturn(gTestResultList);
 
         // TEST
-        List<Users> resultList = userService.getUsersByServiceInstanceIdAndOrganizationGuid(SERVICE_INSTANCE_ID, ORGANIZATION_GUID);
+        UsersList resultList = userService.getUsersByServiceInstanceIdAndOrganizationGuid(SERVICE_INSTANCE_ID, ORGANIZATION_GUID);
 
         // VERIFY
-        assertThat(resultList).isNotNull();
+        assertThat(resultList.getItems()).isNotNull();
         assertEquals(gTestResultList, resultList);
-        assertEquals(PID, resultList.get(0).getId());
-        assertEquals(USER_ID, resultList.get(0).getUserId());
-        assertEquals(SERVICE_INSTANCE_ID, resultList.get(0).getServiceInstanceId());
-        assertEquals(CAAS_ACCOUNT_ACCESS_TOKEN, resultList.get(0).getCaasAccountTokenName());
-        assertEquals(CAAS_ACCOUNT_NAME, resultList.get(0).getCaasAccountName());
-        assertEquals(ORGANIZATION_GUID, resultList.get(0).getOrganizationGuid());
-        assertEquals(SPACE_GUID, resultList.get(0).getSpaceGuid());
-        assertEquals(ROLE_SET_CODE, resultList.get(0).getRoleSetCode());
-        assertEquals(NAMESPACE, resultList.get(0).getCaasNamespace());
-        assertEquals(DESCRIPTION, resultList.get(0).getDescription());
-        assertEquals(CREATED, resultList.get(0).getCreated());
-        assertEquals(LAST_MODIFIED, resultList.get(0).getLastModified());
-        assertEquals(RESULT_CODE_SUCCESS, resultList.get(0).getResultCode());
+        assertEquals(PID, resultList.getItems().get(0).getId());
+        assertEquals(USER_ID, resultList.getItems().get(0).getUserId());
+        assertEquals(SERVICE_INSTANCE_ID, resultList.getItems().get(0).getServiceInstanceId());
+        assertEquals(CAAS_ACCOUNT_ACCESS_TOKEN, resultList.getItems().get(0).getCaasAccountTokenName());
+        assertEquals(CAAS_ACCOUNT_NAME, resultList.getItems().get(0).getCaasAccountName());
+        assertEquals(ORGANIZATION_GUID, resultList.getItems().get(0).getOrganizationGuid());
+        assertEquals(SPACE_GUID, resultList.getItems().get(0).getSpaceGuid());
+        assertEquals(ROLE_SET_CODE, resultList.getItems().get(0).getRoleSetCode());
+        assertEquals(NAMESPACE, resultList.getItems().get(0).getCaasNamespace());
+        assertEquals(DESCRIPTION, resultList.getItems().get(0).getDescription());
+        assertEquals(CREATED, resultList.getItems().get(0).getCreated());
+        assertEquals(LAST_MODIFIED, resultList.getItems().get(0).getLastModified());
+        assertEquals(RESULT_CODE_SUCCESS, resultList.getItems().get(0).getResultCode());
     }
 
     /**

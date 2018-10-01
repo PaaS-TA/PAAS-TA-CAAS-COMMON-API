@@ -98,16 +98,16 @@ public class RolesServiceTest {
         when(rolesRepository.findByRoleSetCode(ROLE_SET_CODE)).thenReturn(gTestResultList);
 
         // TEST
-        List<Roles> resultList = rolesService.getRoleList(ROLE_SET_CODE);
+        RolesList resultList = rolesService.getRoleList(ROLE_SET_CODE);
 
         // VERIFY
         Assertions.assertThat(resultList).isNotNull();
-        assertEquals(gTestResultList, resultList);
-        assertEquals(ROLE_SET_CODE, resultList.get(0).getRoleSetCode());
-        assertEquals(RESOURCE_CODE, resultList.get(0).getResourceCode());
-        assertEquals(VERB_CODE, resultList.get(0).getVerbCode());
-        assertEquals(DESCRIPTION, resultList.get(0).getDescription());
-        assertEquals(CREATED, resultList.get(0).getCreated());
+        assertEquals(gTestResultList, resultList.getItems());
+        assertEquals(ROLE_SET_CODE, resultList.getItems().get(0).getRoleSetCode());
+        assertEquals(RESOURCE_CODE, resultList.getItems().get(0).getResourceCode());
+        assertEquals(VERB_CODE, resultList.getItems().get(0).getVerbCode());
+        assertEquals(DESCRIPTION, resultList.getItems().get(0).getDescription());
+        assertEquals(CREATED, resultList.getItems().get(0).getCreated());
     }
 
 
