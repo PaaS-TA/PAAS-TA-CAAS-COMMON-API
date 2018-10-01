@@ -125,7 +125,7 @@ public class UsersService {
      */
     Users deleteUser(Users user) {
         userRepository.delete(user);
-        return (Users) commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS);
+        return (Users) commonService.setResultModel(user, Constants.RESULT_STATUS_SUCCESS);
     }
 
     /**
