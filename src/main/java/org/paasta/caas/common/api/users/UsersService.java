@@ -132,11 +132,9 @@ public class UsersService {
      * Delete By ServiceInstanceId.
      *
      * @param serviceInstanceId the serviceInstanceId
-     * @return the user
      */
-    Users deleteByServiceInstanceId(String serviceInstanceId) {
+    void deleteByServiceInstanceId(String serviceInstanceId) {
         userRepository.deleteByServiceInstanceId(serviceInstanceId);
-        return (Users) commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS);
     }
 
 }

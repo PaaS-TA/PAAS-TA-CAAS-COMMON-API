@@ -127,11 +127,10 @@ public class UsersController {
      * service instance id 를 통해 User 를 삭제한다.
      *
      * @param serviceInstanceId the serviceInstanceId
-     * @return the user
      */
     @DeleteMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}")
-    Users deleteByServiceInstanceId(@PathVariable("serviceInstanceId") String serviceInstanceId) {
-        return userService.deleteByServiceInstanceId(serviceInstanceId);
+    void deleteByServiceInstanceId(@PathVariable("serviceInstanceId") String serviceInstanceId) {
+        userService.deleteByServiceInstanceId(serviceInstanceId);
     }
 }
 
