@@ -38,7 +38,7 @@ public class RolesService {
      * @param id the id
      * @return the Roles List
      */
-    public RolesList getRoleList(String id) {
+    RolesList getRoleList(String id) {
         List<Roles> roles = rolesRepository.findByRoleSetCode(id);
 
         RolesList rolesList = new RolesList();
@@ -57,7 +57,7 @@ public class RolesService {
      * @param verbCode the verbCode
      * @return the Roles
      */
-    public Roles getRole(String id, String resourceCode, String verbCode) {
+    Roles getRole(String id, String resourceCode, String verbCode) {
         return rolesRepository.findByRoleSetCodeAndResourceCodeAndVerbCode(id, resourceCode, verbCode);
     }
 
@@ -68,7 +68,7 @@ public class RolesService {
      * @param role the role
      * @return the Roles
      */
-    public Roles createRole(Roles role) {
+    Roles createRole(Roles role) {
         return rolesRepository.save(role);
     }
 
@@ -79,7 +79,7 @@ public class RolesService {
      * @param role the role
      * @return the Roles
      */
-    public Roles deleteRole(Roles role) {
+    Roles deleteRole(Roles role) {
         rolesRepository.delete(role);
         return (Roles) commonService.setResultModel(Roles.class, Constants.RESULT_STATUS_SUCCESS);
     }
