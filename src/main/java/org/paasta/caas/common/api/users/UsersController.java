@@ -1,5 +1,6 @@
 package org.paasta.caas.common.api.users;
 
+import org.paasta.caas.common.api.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,6 @@ import java.util.List;
  * @since 2018.08.02
  */
 @RestController
-@RequestMapping("/users")
 public class UsersController {
 
     private final UsersService userService;
@@ -31,7 +31,7 @@ public class UsersController {
      *
      * @return the user list
      */
-    @GetMapping
+    @GetMapping(value = Constants.URI_API_USERS)
     List<Users> getUserList() {
         return userService.getUserList();
     }
@@ -42,7 +42,7 @@ public class UsersController {
      * @param id the id
      * @return the user
      */
-    @GetMapping(value = "/{id:.+}")
+    @GetMapping(value = Constants.URI_API_USERS_DETAIL)
     Users getUser(@PathVariable("id") int id) {
         return userService.getUser(id);
     }
@@ -54,7 +54,7 @@ public class UsersController {
      * @param organizationGuid the organizationGuid
      * @return the user
      */
-    @GetMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}")
+    @GetMapping(value = Constants.URI_API_USERS_BY_SUID_AND_ORG_GUID)
     UsersList getUsersByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId, @PathVariable("organizationGuid") String organizationGuid) {
         return userService.getUsersByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid);
     }
@@ -68,7 +68,7 @@ public class UsersController {
      * @param userId the userId
      * @return the user
      */
-    @GetMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}/userId/{userId:.+}")
+    @GetMapping(value = Constants.URI_API_USERS_BY_SUID_AND_ORG_GUID_AND_USER_ID)
     Users getUserByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId,
                                                         @PathVariable("organizationGuid") String organizationGuid,
                                                         @PathVariable("userId") String userId){
@@ -83,7 +83,7 @@ public class UsersController {
      * @param user the user
      * @return the user
      */
-    @PostMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}/userId/{userId:.+}")
+    @PostMapping(value = Constants.URI_API_USERS_BY_SUID_AND_ORG_GUID_AND_USER_ID)
     Users updateUserRoleByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId,
                                                            @PathVariable("organizationGuid") String organizationGuid,
                                                            @RequestBody Users user){
@@ -96,7 +96,7 @@ public class UsersController {
      * @param user the user
      * @return the user
      */
-    @PostMapping
+    @PostMapping(value = Constants.URI_API_USERS)
     Users createUser(@RequestBody Users user) {
         return userService.createUser(user);
     }
@@ -107,7 +107,7 @@ public class UsersController {
      * @param user the user
      * @return the user
      */
-    @PutMapping
+    @PutMapping(value = Constants.URI_API_USERS)
     Users updateUser(@RequestBody Users user) {
         return userService.updateUser(user);
     }
@@ -118,7 +118,7 @@ public class UsersController {
      * @param user the user
      * @return the string
      */
-    @DeleteMapping
+    @DeleteMapping(value = Constants.URI_API_USERS)
     Users deleteUser(@RequestBody Users user) {
         return userService.deleteUser(user);
     }
@@ -128,7 +128,7 @@ public class UsersController {
      *
      * @param serviceInstanceId the serviceInstanceId
      */
-    @DeleteMapping(value = "/serviceInstanceId/{serviceInstanceId:.+}")
+    @DeleteMapping(value = Constants.URI_API_USERS_BY_SERVICE_INSTANCE_ID)
     void deleteByServiceInstanceId(@PathVariable("serviceInstanceId") String serviceInstanceId) {
         userService.deleteByServiceInstanceId(serviceInstanceId);
     }

@@ -1,5 +1,6 @@
 package org.paasta.caas.common.api.adminToken;
 
+import org.paasta.caas.common.api.common.Constants;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
  * @since 2018.08.27
  */
 @RestController
-@RequestMapping("/adminToken")
 public class AdminTokenController {
 
     private final AdminTokenService adminTokenService;
@@ -31,7 +31,7 @@ public class AdminTokenController {
      * @param token_name the token_name
      * @return the AdminToken
      */
-    @GetMapping(value = "/{token_name:.+}")
+    @GetMapping(value = Constants.URI_API_ADMIN_TOKEN_DETAIL)
     AdminToken getTokenValue(@PathVariable("token_name") String token_name) {
         return adminTokenService.getTokenValue(token_name);
     }
@@ -43,7 +43,7 @@ public class AdminTokenController {
      * @param adminToken the admin token
      * @return the admin token
      */
-    @PostMapping
+    @PostMapping(value = Constants.URI_API_ADMIN_TOKEN)
     AdminToken createAdminToken(@RequestBody AdminToken adminToken) {
         return adminTokenService.createAdminToken(adminToken);
     }
