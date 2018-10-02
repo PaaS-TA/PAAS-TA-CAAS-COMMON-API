@@ -95,7 +95,7 @@ public class Users {
 
     @PreUpdate
     void preUpdate() {
-        if (this.lastModified == null) {
+        if (this.lastModified != null) {
             this.lastModified = LocalDateTime.now(ZoneId.of(Constants.STRING_TIME_ZONE_ID)).format(DateTimeFormatter.ofPattern(Constants.STRING_DATE_TYPE));
         }
     }
