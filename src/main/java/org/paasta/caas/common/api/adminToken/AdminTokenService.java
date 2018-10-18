@@ -38,7 +38,13 @@ public class AdminTokenService {
      * @return the AdminToken
      */
     AdminToken getTokenValue(String token_name) {
-        return adminTokenRepository.findByTokenName(token_name);
+        AdminToken token = adminTokenRepository.findByTokenName(token_name);
+
+        if(token == null) {
+            return (AdminToken) commonService.setResultModel(AdminToken.class, Constants.RESULT_STATUS_FAIL);
+        }
+
+        return (AdminToken) commonService.setResultModel(AdminToken.class, Constants.RESULT_STATUS_SUCCESS);
     }
 
 

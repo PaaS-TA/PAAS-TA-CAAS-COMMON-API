@@ -37,11 +37,6 @@ public class AdminTokenController {
      */
     @GetMapping(value = Constants.URI_API_ADMIN_TOKEN_DETAIL)
     AdminToken getTokenValue(@PathVariable("token_name") String token_name) {
-        AdminToken token = adminTokenService.getTokenValue(token_name);
-
-        if(token == null) {
-            return (AdminToken) commonService.setResultModel(new AdminToken(), Constants.RESULT_STATUS_FAIL);
-        }
         return adminTokenService.getTokenValue(token_name);
     }
 
