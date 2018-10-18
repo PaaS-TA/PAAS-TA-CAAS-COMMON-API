@@ -41,16 +41,6 @@ public class AdminTokenService {
         return adminTokenRepository.findByTokenName(token_name);
     }
 
-    /**
-     * Admin token 상세 정보를 조회한다.
-     *
-     * @param token_name the token_name
-     * @return the AdminToken
-     */
-    AdminToken getTokenExist(String token_name) {
-        return adminTokenRepository.findByTokenName(token_name);
-    }
-
 
     /**
      * Admin token 정보를 등록한다.
