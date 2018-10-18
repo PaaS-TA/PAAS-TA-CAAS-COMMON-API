@@ -85,7 +85,7 @@ public class AdminTokenServiceTest {
     @Test
     public void getTokenValue_Valid_ReturnModel() {
         // CONDITION
-        when(adminTokenRepository.getOne(TOKEN_NAME)).thenReturn(gTestResultModel);
+        when(adminTokenRepository.findByTokenName(TOKEN_NAME)).thenReturn(gTestResultModel);
 
         // TEST
         AdminToken resultModel = adminTokenService.getTokenValue(TOKEN_NAME);
