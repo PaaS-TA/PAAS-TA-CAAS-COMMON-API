@@ -1,5 +1,6 @@
 package org.paasta.caas.common.api.adminToken;
 
+import org.paasta.caas.common.api.common.CommonService;
 import org.paasta.caas.common.api.common.Constants;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,14 +15,17 @@ import org.springframework.web.bind.annotation.*;
 public class AdminTokenController {
 
     private final AdminTokenService adminTokenService;
+    private final CommonService commonService;
 
     /**
      * Instantiates a new Admin token controller.
      *
      * @param adminTokenService the admin token service
+     * @param commonService
      */
-    public AdminTokenController(AdminTokenService adminTokenService) {
+    public AdminTokenController(AdminTokenService adminTokenService, CommonService commonService) {
         this.adminTokenService = adminTokenService;
+        this.commonService = commonService;
     }
 
 
@@ -33,6 +37,11 @@ public class AdminTokenController {
      */
     @GetMapping(value = Constants.URI_API_ADMIN_TOKEN_DETAIL)
     AdminToken getTokenValue(@PathVariable("token_name") String token_name) {
+        AdminToken token = adminTokenService.getTokenValue(token_name);
+
+        if(token == null) {
+            return (AdminToken) commonService.setResultModel(new AdminToken(), Constants.RESULT_STATUS_FAIL);
+        }
         return adminTokenService.getTokenValue(token_name);
     }
 

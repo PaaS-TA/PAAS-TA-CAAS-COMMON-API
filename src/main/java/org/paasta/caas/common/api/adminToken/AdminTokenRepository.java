@@ -1,6 +1,6 @@
 package org.paasta.caas.common.api.adminToken;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 
@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
  * @version 20180725
  */
 @Repository
-public interface AdminTokenRepository extends JpaRepository<AdminToken, String> {
+public interface AdminTokenRepository extends CrudRepository<AdminToken, String> {
+
+    AdminToken findByTokenName(String tokenName);
 
 }
