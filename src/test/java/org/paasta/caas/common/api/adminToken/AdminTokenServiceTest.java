@@ -85,7 +85,8 @@ public class AdminTokenServiceTest {
     @Test
     public void getTokenValue_Valid_ReturnModel() {
         // CONDITION
-        when(adminTokenRepository.findByTokenName(TOKEN_NAME)).thenReturn(gTestResultModel);
+        when(adminTokenRepository.findByTokenName(TOKEN_NAME)).thenReturn(gTestModel);
+        when(commonService.setResultModel(AdminToken.class, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
 
         // TEST
         AdminToken resultModel = adminTokenService.getTokenValue(TOKEN_NAME);
@@ -98,6 +99,18 @@ public class AdminTokenServiceTest {
         assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
     }
 
+    @Test
+    public void getTokenValue_Invalid_ReturnModel(){
+        // CONDITION
+        when(adminTokenRepository.findByTokenName(TOKEN_NAME)).thenReturn(null);
+        when(commonService.setResultModel(AdminToken.class, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
+
+        // TEST
+        AdminToken resultModel = adminTokenService.getTokenValue(TOKEN_NAME);
+
+        // VERIFY
+        assertThat(resultModel).isNotNull();
+    }
 
     /**
      * Create admin token valid return model.
