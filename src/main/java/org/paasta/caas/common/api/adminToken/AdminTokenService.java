@@ -41,10 +41,10 @@ public class AdminTokenService {
         AdminToken token = adminTokenRepository.findByTokenName(token_name);
 
         if(token == null) {
-            return (AdminToken) commonService.setResultModel(AdminToken.class, Constants.RESULT_STATUS_FAIL);
+            return (AdminToken) commonService.setResultModel(null, Constants.RESULT_STATUS_FAIL);
         }
 
-        return (AdminToken) commonService.setResultModel(AdminToken.class, Constants.RESULT_STATUS_SUCCESS);
+        return (AdminToken) commonService.setResultModel(token, Constants.RESULT_STATUS_SUCCESS);
     }
 
 
