@@ -73,6 +73,12 @@ public class Users {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "plan_name")
+    private String planName;
+
+    @Column(name = "plan_description")
+    private String planDescription;
+
     @Column(name = "created", nullable = false, updatable = false)
     private String created;
 
