@@ -39,9 +39,10 @@ public class AdminTokenService {
      */
     AdminToken getTokenValue(String token_name) {
         AdminToken token = adminTokenRepository.findByTokenName(token_name);
+        AdminToken nullObject = new AdminToken();
 
         if(token == null) {
-            return (AdminToken) commonService.setResultModel(null, Constants.RESULT_STATUS_FAIL);
+            return (AdminToken) commonService.setResultModel(nullObject, Constants.RESULT_STATUS_FAIL);
         }
 
         return (AdminToken) commonService.setResultModel(token, Constants.RESULT_STATUS_SUCCESS);

@@ -33,6 +33,7 @@ public class AdminTokenServiceTest {
     private final String RESULT_CODE_SUCCESS = Constants.RESULT_STATUS_SUCCESS;
 
     private AdminToken gTestModel = null;
+    private AdminToken gTestErrorModel = null;
     private AdminToken gTestResultModel = null;
     private AdminToken gTestResultErrorModel = null;
 
@@ -53,6 +54,7 @@ public class AdminTokenServiceTest {
     public void setUp() {
 
         gTestModel = new AdminToken();
+        gTestErrorModel = new AdminToken();
         gTestResultModel = new AdminToken();
         gTestResultErrorModel = new AdminToken();
 
@@ -86,7 +88,7 @@ public class AdminTokenServiceTest {
     public void getTokenValue_Valid_ReturnModel() {
         // CONDITION
         when(adminTokenRepository.findByTokenName(TOKEN_NAME)).thenReturn(gTestModel);
-        when(commonService.setResultModel(AdminToken.class, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
+        when(commonService.setResultModel(gTestModel, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
 
         // TEST
         AdminToken resultModel = adminTokenService.getTokenValue(TOKEN_NAME);
@@ -103,7 +105,7 @@ public class AdminTokenServiceTest {
     public void getTokenValue_Invalid_ReturnModel(){
         // CONDITION
         when(adminTokenRepository.findByTokenName(TOKEN_NAME)).thenReturn(null);
-        when(commonService.setResultModel(AdminToken.class, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
+        when(commonService.setResultModel(gTestErrorModel, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
 
         // TEST
         AdminToken resultModel = adminTokenService.getTokenValue(TOKEN_NAME);
