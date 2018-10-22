@@ -50,10 +50,18 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     /**
      * 해당 Namespace의 User 의 상세 정보를 조회한다.(By namespace)
-     * <pre></pre>
+     *
      * @param namespace the namespace
      * @return the user
      */
     Users findByUserIdAndCaasNamespace(String userId, String namespace);
+
+    /**
+     * User 의 상세 정보를 service Instance ID로 조회한다.
+     *
+     * @param serviceInstanceId serviceInstance ID
+     * @return List<User>
+     */
+    List<Users> findByServiceInstanceId(String serviceInstanceId);
 
 }

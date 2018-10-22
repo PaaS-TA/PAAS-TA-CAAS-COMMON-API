@@ -134,6 +134,16 @@ public class UsersController {
     }
 
     /**
+     * service instance id 를 통해 User Update한다.
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     */
+    @PutMapping(value = Constants.URI_API_USERS_BY_SERVICE_INSTANCE_ID)
+    void updateByServiceInstanceId(@PathVariable("serviceInstanceId") String serviceInstanceId, @RequestBody Users user) {
+        userService.updateByServiceInstanceId(serviceInstanceId, user);
+    }
+
+    /**
      * Caas namespace 를 통해 유저 정보를 가져온다.
      *
      * @param namespace the namespace

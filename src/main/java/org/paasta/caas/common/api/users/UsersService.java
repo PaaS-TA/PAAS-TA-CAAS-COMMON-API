@@ -146,6 +146,20 @@ public class UsersService {
     }
 
     /**
+     * Update By ServiceInstanceId.
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     */
+    void updateByServiceInstanceId(String serviceInstanceId, Users userInfo) {
+        List<Users> userList = userRepository.findByServiceInstanceId(serviceInstanceId);
+        for(Users user : userList) {
+            user.setPlanName(userInfo.getPlanName());
+            user.setPlanDescription(userInfo.getPlanDescription());
+            userRepository.save(user);
+        }
+    }
+
+    /**
      * Get User Name By namespace.
      *
      * @param namespace the namespace
