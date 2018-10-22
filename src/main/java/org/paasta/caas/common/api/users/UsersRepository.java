@@ -47,4 +47,13 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
     @Modifying
     @Query(value = "delete from user where service_instance_id = ?1", nativeQuery = true)
     Integer deleteByServiceInstanceId(String serviceInstanceId);
+
+    /**
+     * 해당 Namespace의 User 의 상세 정보를 조회한다.(By namespace)
+     * <pre></pre>
+     * @param namespace the namespace
+     * @return the user
+     */
+    Users findByUserIdAndCaasNamespace(String userId, String namespace);
+
 }

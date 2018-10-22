@@ -132,6 +132,17 @@ public class UsersController {
     void deleteByServiceInstanceId(@PathVariable("serviceInstanceId") String serviceInstanceId) {
         userService.deleteByServiceInstanceId(serviceInstanceId);
     }
+
+    /**
+     * Caas namespace 를 통해 유저 정보를 가져온다.
+     *
+     * @param namespace the namespace
+     */
+    @GetMapping(value = Constants.URI_API_USERS_VALID_EXIST_NAMESPACE)
+    boolean isUserCountByCaasNamespace(@PathVariable("userId") String userId, @PathVariable("namespace") String namespace) {
+        return userService.isUserByCaasNamespace(userId, namespace);
+    }
+
 }
 
 

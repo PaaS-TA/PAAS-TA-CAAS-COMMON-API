@@ -2,6 +2,8 @@ package org.paasta.caas.common.api.users;
 
 import org.paasta.caas.common.api.common.CommonService;
 import org.paasta.caas.common.api.common.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ import java.util.List;
  */
 @Service
 public class UsersService {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(UsersService.class);
     private final CommonService commonService;
     private final UsersRepository userRepository;
 
@@ -141,6 +143,25 @@ public class UsersService {
      */
     void deleteByServiceInstanceId(String serviceInstanceId) {
         userRepository.deleteByServiceInstanceId(serviceInstanceId);
+    }
+
+    /**
+     * Get User Name By namespace.
+     *
+     * @param namespace the namespace
+     */
+    boolean isUserByCaasNamespace(String userId, String namespace) {
+        boolean isExistUser = true;
+
+        Users users =  userRepository.findByUserIdAndCaasNamespace(userId, namespace);
+
+        LOGGER.info("users is "+users);
+
+        if(users == null ){
+            LOGGER.info("findByCaasNamespace is NULL");
+            isExistUser = false;
+        }
+        return isExistUser;
     }
 
 }

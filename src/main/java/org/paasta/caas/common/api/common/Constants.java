@@ -29,6 +29,8 @@ public class Constants {
     public static final String URI_API_USERS_BY_SUID_AND_ORG_GUID = "/users/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}";
     public static final String URI_API_USERS_BY_SUID_AND_ORG_GUID_AND_USER_ID = "/users/serviceInstanceId/{serviceInstanceId:.+}/organizationGuid/{organizationGuid:.+}/userId/{userId:.+}/";
 
+    public static final String URI_API_USERS_VALID_EXIST_NAMESPACE = "/users/userId/{userId}/namespace/{namespace}";
+
     private Constants() {
         throw new IllegalStateException();
     }
