@@ -423,15 +423,37 @@ public class UsersServiceTest {
     }
 
     @Test
-    public void isUserByCaasNamespace_Valid_ReturnModel(){
+    public void isUserByCaasNamespace_Valid_ReturnTrue(){
         // SET
         gTestModel.setUserId(USER_ID);
         gTestModel.setCaasNamespace(NAMESPACE);
 
         // CONDITION
-        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
+        when(userRepository.findByUserIdAndCaasNamespace(gTestModel.getUserId(), gTestModel.getCaasNamespace())).thenReturn(gTestResultModel);
 
         // TEST
-        userService.isUserByCaasNamespace(gTestModel.getUserId(), gTestModel.getCaasNamespace() );
+        boolean result = userService.isUserByCaasNamespace(gTestModel.getUserId(), gTestModel.getCaasNamespace() );
+
+        // VERIFY
+        assertThat(result).isNotNull();
+        assertEquals(true, result);
+
+    }
+
+    @Test
+    public void isUserByCaasNamespace_Invalid_ReturnFalse(){
+        // SET
+        gTestModel.setUserId(USER_ID);
+        gTestModel.setCaasNamespace(NAMESPACE);
+
+        // CONDITION
+        when(userRepository.findByUserIdAndCaasNamespace(gTestModel.getUserId(), gTestModel.getCaasNamespace())).thenReturn(null);
+
+        // TEST
+        boolean result = userService.isUserByCaasNamespace(gTestModel.getUserId(), gTestModel.getCaasNamespace() );
+
+        // VERIFY
+        assertThat(result).isNotNull();
+        assertEquals(false, result);
     }
 }
