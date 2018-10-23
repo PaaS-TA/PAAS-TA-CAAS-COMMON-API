@@ -421,4 +421,17 @@ public class UsersServiceTest {
         //call method
         userService.updateByServiceInstanceId(SERVICE_INSTANCE_ID, gTestModel);
     }
+
+    @Test
+    public void isUserByCaasNamespace_Valid_ReturnModel(){
+        // SET
+        gTestModel.setUserId(USER_ID);
+        gTestModel.setCaasNamespace(NAMESPACE);
+
+        // CONDITION
+        when(commonService.setResultModel(Users.class, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
+
+        // TEST
+        userService.isUserByCaasNamespace(gTestModel.getUserId(), gTestModel.getCaasNamespace() );
+    }
 }
