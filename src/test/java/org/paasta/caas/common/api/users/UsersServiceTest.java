@@ -1,5 +1,13 @@
 package org.paasta.caas.common.api.users;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -8,19 +16,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.paasta.caas.common.api.common.CommonService;
 import org.paasta.caas.common.api.common.Constants;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
 
 /**
  * The type Users service test.
@@ -409,4 +410,15 @@ public class UsersServiceTest {
         userService.deleteByServiceInstanceId(gTestModel.getServiceInstanceId());
     }
 
+    @Test
+    public void updateByServiceInstanceId_Valid() {
+        //set gTestResultList
+        gTestModel.setServiceInstanceId(SERVICE_INSTANCE_ID);
+
+        when(userRepository.findByServiceInstanceId(SERVICE_INSTANCE_ID)).thenReturn(gTestResultList);
+//        when(userRepository.save(gTestModel)).thenReturn(gTestResultModel);
+
+        //call method
+        userService.updateByServiceInstanceId(SERVICE_INSTANCE_ID, gTestModel);
+    }
 }
