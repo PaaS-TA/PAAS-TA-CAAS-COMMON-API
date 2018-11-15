@@ -46,11 +46,13 @@ public class UsersServiceTest {
     private final String CREATED = "test-created";
     private final String LAST_MODIFIED = "test-last-modified";
     private final String RESULT_CODE_SUCCESS = Constants.RESULT_STATUS_SUCCESS;
+    private final String RESULT_CODE_FAIL = Constants.RESULT_STATUS_FAIL;
 
     private Users gTestModel = null;
     private Users gTestResultModel = null;
     private Users gTestFinalModel = null;
     private Users gTestResultErrorModel = null;
+    private Users gTestEmptyModel = null;
     private List<Users> gTestResultList = null;
 
     @Mock
@@ -74,6 +76,7 @@ public class UsersServiceTest {
         gTestResultModel = new Users();
         gTestFinalModel = new Users();
         gTestResultErrorModel = new Users();
+        gTestEmptyModel = new Users();
 
         gTestModel.setUserId(USER_ID);
         gTestModel.setServiceInstanceId(SERVICE_INSTANCE_ID);
@@ -383,18 +386,35 @@ public class UsersServiceTest {
     @Test
     public void deleteUser_Valid_ReturnModel() {
         // SET
-        gTestModel.setId(PID);
+        gTestModel.setId(1);
 
         // CONDITION
-        doNothing().when(userRepository).delete(gTestModel);
-        when(commonService.setResultModel(gTestModel, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
+        when(userRepository.deleteByServiceInstanceIdAndOrganizationGuidAndUserId(gTestModel.getServiceInstanceId(), gTestModel.getOrganizationGuid(), gTestModel.getUserId())).thenReturn(1);
+        when(commonService.setResultModel(gTestEmptyModel, Constants.RESULT_STATUS_SUCCESS)).thenReturn(gTestResultModel);
 
         // TEST
-        Users resultModel = userService.deleteUser(gTestModel);
+        Users resultModel = userService.deleteByServiceInstanceIdAndOrganizationGuid(gTestModel.getServiceInstanceId(), gTestModel.getOrganizationGuid(), gTestModel.getUserId());
 
         // VERIFY
         assertThat(resultModel).isNotNull();
         assertEquals(RESULT_CODE_SUCCESS, resultModel.getResultCode());
+    }
+
+    @Test
+    public void deleteUser_Invalid_ReturnModel(){
+        // SET
+        gTestModel.setId(1);
+
+        // CONDITION
+        when(userRepository.deleteByServiceInstanceIdAndOrganizationGuidAndUserId(gTestModel.getServiceInstanceId(), gTestModel.getOrganizationGuid(), gTestModel.getUserId())).thenReturn(0);
+        when(commonService.setResultModel(gTestEmptyModel, Constants.RESULT_STATUS_FAIL)).thenReturn(gTestResultErrorModel);
+
+        // TEST
+        Users resultModel = userService.deleteByServiceInstanceIdAndOrganizationGuid(gTestModel.getServiceInstanceId(), gTestModel.getOrganizationGuid(), gTestModel.getUserId());
+
+        // VERIFY
+        assertThat(resultModel).isNotNull();
+        assertEquals(RESULT_CODE_FAIL, resultModel.getResultCode());
     }
 
     @Test
