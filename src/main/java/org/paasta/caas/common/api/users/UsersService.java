@@ -34,7 +34,7 @@ public class UsersService {
         this.userRepository = userRepository;}
 
     /**
-     * Gets user list.
+     * user 목록을 조회한다.
      *
      * @return the user list
      */
@@ -53,7 +53,7 @@ public class UsersService {
     }
 
     /**
-     * Gets user list By ServiceInstanceId, OrganizationGuid
+     * ServiceInstanceId, OrganizationGuid 로 user 목록을 조회한다.
      *
      * @param serviceInstanceId the serviceInstanceId
      * @param organizationGuid the organizationGuid
@@ -71,7 +71,7 @@ public class UsersService {
 
 
     /**
-     * Gets user By ServiceInstanceId, OrganizationGuid, userId
+     * ServiceInstanceId, OrganizationGuid, userId 로 user 를 조회한다.
      *
      * @param serviceInstanceId the serviceInstanceId
      * @param organizationGuid the organizationGuid
@@ -84,7 +84,7 @@ public class UsersService {
 
 
     /**
-     * Update User Role By ServiceInstanceId And OrganizationGuid
+     * ServiceInstanceId 와 OrganizationGuid 으로 user 의 권한을 수정한다.
      *
      * @param user the user
      * @return the user
@@ -94,7 +94,7 @@ public class UsersService {
     }
 
     /**
-     * Create user user.
+     * user 를 생성한다.
      *
      * @param user the user
      * @return the user
@@ -110,7 +110,7 @@ public class UsersService {
     }
 
     /**
-     * Update user user.
+     * user 를 수정한다.
      *
      * @param user the user
      * @return the user
@@ -125,19 +125,9 @@ public class UsersService {
         }
     }
 
-    /**
-     * Delete user string.
-     *
-     * @param user the user
-     * @return the string
-     */
-    Users deleteUser(Users user) {
-        userRepository.delete(user);
-        return (Users) commonService.setResultModel(user, Constants.RESULT_STATUS_SUCCESS);
-    }
 
     /**
-     * Delete By ServiceInstanceId.
+     * ServiceInstanceId 로 user 를 삭제한다.
      *
      * @param serviceInstanceId the serviceInstanceId
      */
@@ -146,7 +136,7 @@ public class UsersService {
     }
 
     /**
-     * Update By ServiceInstanceId.
+     * ServiceInstanceId 로 user 를 수정한다.
      *
      * @param serviceInstanceId the serviceInstanceId
      */
@@ -160,7 +150,7 @@ public class UsersService {
     }
 
     /**
-     * Get User Name By namespace.
+     * namespace 로 user name 을 조회한다.
      *
      * @param namespace the namespace
      */
@@ -178,4 +168,25 @@ public class UsersService {
         return isExistUser;
     }
 
+
+    /**
+     * ServiceInstanceId, OrganizationGuid, userId 로 User 를 삭제한다.
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     * @param organizationGuid the organizationGuid
+     * @param userId the userId
+     * @return the user
+     */
+    Users deleteByServiceInstanceIdAndOrganizationGuid(String serviceInstanceId, String organizationGuid, String userId) {
+        int resultValue = userRepository.deleteByServiceInstanceIdAndOrganizationGuidAndUserId(serviceInstanceId, organizationGuid, userId);
+        Users users = new Users();
+        String resultCode;
+        if(resultValue == 1){
+            resultCode = Constants.RESULT_STATUS_SUCCESS;
+        }else {
+            resultCode = Constants.RESULT_STATUS_FAIL;
+        }
+
+        return (Users) commonService.setResultModel(users, resultCode);
+    }
 }

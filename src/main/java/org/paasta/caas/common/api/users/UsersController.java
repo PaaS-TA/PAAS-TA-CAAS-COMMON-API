@@ -112,16 +112,6 @@ public class UsersController {
         return userService.updateUser(user);
     }
 
-    /**
-     * User 를 삭제한다.
-     *
-     * @param user the user
-     * @return the string
-     */
-    @DeleteMapping(value = Constants.URI_API_USERS)
-    Users deleteUser(@RequestBody Users user) {
-        return userService.deleteUser(user);
-    }
 
     /**
      * service instance id 를 통해 User 를 삭제한다.
@@ -131,6 +121,22 @@ public class UsersController {
     @DeleteMapping(value = Constants.URI_API_USERS_BY_SERVICE_INSTANCE_ID)
     void deleteByServiceInstanceId(@PathVariable("serviceInstanceId") String serviceInstanceId) {
         userService.deleteByServiceInstanceId(serviceInstanceId);
+    }
+
+
+    /**
+     * User 를 삭제한다.
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     * @param organizationGuid the organizationGuid
+     * @param userId the userId
+     * @return the user
+     */
+    @DeleteMapping(value = Constants.URI_API_USERS_BY_SUID_AND_ORG_GUID_AND_USER_ID)
+    Users deleteUserByServiceInstanceIdAndOrganizationGuid(@PathVariable("serviceInstanceId") String serviceInstanceId,
+                                                               @PathVariable("organizationGuid") String organizationGuid,
+                                                               @PathVariable("userId") String userId){
+        return userService.deleteByServiceInstanceIdAndOrganizationGuid(serviceInstanceId, organizationGuid, userId);
     }
 
     /**

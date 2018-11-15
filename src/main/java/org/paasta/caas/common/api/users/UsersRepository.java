@@ -64,4 +64,14 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
      */
     List<Users> findByServiceInstanceId(String serviceInstanceId);
 
+
+    /**
+     * serviceInstanceId 와 organizationGuid 와 userId 로  User 를 삭제한다.
+     *
+     * @param serviceInstanceId the serviceInstanceId
+     * @param organizationGuid the organizationGuid
+     * @param userId the userId
+     * @return int
+     */
+    Integer deleteByServiceInstanceIdAndOrganizationGuidAndUserId(String serviceInstanceId, String organizationGuid, String userId);
 }
