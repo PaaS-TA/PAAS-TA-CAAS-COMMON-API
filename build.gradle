@@ -40,6 +40,8 @@ jar {
 }
 
 dependencies {
+	//Server Security
+	compile ('org.springframework.boot:spring-boot-starter-security')
 	compile "org.springframework.boot:spring-boot-starter-web"
 	compile "org.springframework.boot:spring-boot-starter-aop"
 	compile "org.springframework.boot:spring-boot-starter-data-jpa"

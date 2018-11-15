@@ -1,6 +1,9 @@
 spring:
   application:
     name: caas-common-api
+  security:
+    username: admin
+    password: PaaS-TA
 
 ---
 spring:
