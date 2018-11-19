@@ -34,11 +34,11 @@ public class AdminTokenService {
     /**
      * Admin token 상세 정보를 조회한다.
      *
-     * @param token_name the token_name
+     * @param tokenName the tokenName
      * @return the AdminToken
      */
-    AdminToken getTokenValue(String token_name) {
-        AdminToken token = adminTokenRepository.findByTokenName(token_name);
+    AdminToken getTokenValue(String tokenName) {
+        AdminToken token = adminTokenRepository.findByTokenName(tokenName);
         AdminToken nullObject = new AdminToken();
 
         if(token == null) {

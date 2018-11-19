@@ -17,7 +17,7 @@ public class Constants {
 
     // API URI
     public static final String URI_API_ADMIN_TOKEN = "/adminToken";
-    public static final String URI_API_ADMIN_TOKEN_DETAIL = "/adminToken/{token_name:.+}";
+    public static final String URI_API_ADMIN_TOKEN_DETAIL = "/adminToken/{tokenName:.+}";
 
     public static final String URI_API_ROLES = "/roles";
     public static final String URI_API_ROLES_ID_LIST = "/roles/{id:.+}";

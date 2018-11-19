@@ -32,12 +32,12 @@ public class AdminTokenController {
     /**
      * Admin token 상세 정보를 조회한다.
      *
-     * @param token_name the token_name
+     * @param tokenName the tokenName
      * @return the AdminToken
      */
     @GetMapping(value = Constants.URI_API_ADMIN_TOKEN_DETAIL)
-    AdminToken getTokenValue(@PathVariable("token_name") String token_name) {
-        return adminTokenService.getTokenValue(token_name);
+    AdminToken getTokenValue(@PathVariable("tokenName") String tokenName) {
+        return adminTokenService.getTokenValue(tokenName);
     }
 
 
